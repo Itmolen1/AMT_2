@@ -1,0 +1,143 @@
+﻿@model WebApplication1.Models.VenderInformations
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        @if (Model != null && Model.CompanyName != null)
+                        {
+                            <h3 class="card-title">Update Vender</h3>
+                        }
+                        else
+                        {
+                            <h3 class="card-title">Create New Vender</h3>
+                        }
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <input asp-for="Id" type="hidden" />
+                                <input asp-for="CreatedBy" type="hidden" />
+                                <input asp-for="CreatedDate" type="hidden" />
+                                <input asp-for="IsActive" type="hidden" />
+                                <div class="col-lg-2 col-sm-6">
+                                    <label asp-for="CompanyName">Vender Name</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6">
+                                    <input type="text" name="CompanyName" asp-for="CompanyName" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Vender Name">
+                                    <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="TRNNumber">TRN Number</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="number" name="TRNNumber" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==14) return false;" maxlength="14" asp-for="TRNNumber" autocomplete="off" class="form-control text-capitalize" placeholder="Enter TRN Number">
+                                    <span asp-validation-for="TRNNumber" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="ContactPersonName">Contact Person</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="ContactPersonName" asp-for="ContactPersonName" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Contact Person Name">
+                                    <span asp-validation-for="ContactPersonName" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="MobileNumber">Mobile Number</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="MobileNumber" asp-for="MobileNumber" autocomplete="off" class="form-control" placeholder="Enter Mobile Number">
+                                    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="LandLine">Land Line</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="LandLine" asp-for="LandLine" autocomplete="off" class="form-control" placeholder="Enter Land Line">
+                                    <span asp-validation-for="LandLine" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Email">Email</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="Email" asp-for="Email" autocomplete="off" class="form-control" placeholder="Enter Csutomer E-mail">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Country">Country</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <select asp-for="Country" class="custom-select rounded-0">
+                                        <option value="UAE" selected="selected">UAE</option>
+                                    </select>
+                                    <span asp-validation-for="Country" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="State">State</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <select asp-for="State" class="custom-select rounded-0">
+                                        <option value="Abu Dhabi" selected="selected">Abu Dhabi</option>
+                                        <option value="Dubai" selected="selected">Dubai</option>
+                                        <option value="Sharjah" selected="selected">Sharjah</option>
+                                        <option value="Fujairah" selected="selected">Fujairah</option>
+                                        <option value="Ajman" selected="selected">Ajman</option>
+                                        <option value="Umm Al Quwain" selected="selected">Umm Al Quwain</option>
+                                        <option value="Ras Al Khaimah" selected="selected">Ras Al Khaimah</option>
+                                    </select>
+                                    <span asp-validation-for="State" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Area">Area</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="Area" asp-for="Area" autocomplete="off" class="form-control" placeholder="Enter Area">
+                                    <span asp-validation-for="Area" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Address">Complete Address</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="Address" asp-for="Address" autocomplete="off" class="form-control" placeholder="Enter Customer Address">
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Description">Description</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <div class="form-group">
+                                        <textarea type="text" name="Description" asp-for="Description" autocomplete="off" class="form-control" placeholder="Enter Description"></textarea>
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <input type="submit" value="Submit" class="btn btn-success" /> |
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+

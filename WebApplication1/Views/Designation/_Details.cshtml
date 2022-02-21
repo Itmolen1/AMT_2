@@ -1,0 +1,78 @@
+﻿@model WebApplication1.Models.DesignationInformations
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-sm-0"></div>
+            <div class="col-md-8 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title text text-blue">Designation Details</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>@Model.Id</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Designation</td>
+                                        <td>@Model.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created By</td>
+                                        <td>@(Model.UserInformation == null ? "Unknown" : Model.UserInformation.FullName)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>On Date</td>
+                                        <td>@Model.CreatedDate</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+
+                                        @if (Model.IsActive == true)
+                                        {
+                                            <td><span class="badge bg-success">True</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span class="badge bg-danger">False</span></td>
+                                        }
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <th>No Record Found for the search Id</th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
+            <!-- /.col -->
+            <div class="col-md-2 col-sm-0"></div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+
+@if (Model != null)
+{
+<div>
+    @Html.ActionLink("Edit", "Edit", new { Id = Model.Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>
+}

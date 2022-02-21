@@ -1,0 +1,68 @@
+﻿@model WebApplication1.Models.DepartmentInformations
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-sm-0"></div>
+            <div class="col-md-8 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title text text-blue">Department Delete</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                @if (Model != null)
+                                {                           
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>@Model.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created By</td>
+                                        <td>@(Model.UserInformation == null ? "Unknown" : Model.UserInformation.FullName)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+
+                                        @if (Model.IsActive == true)
+                                        {
+                                            <td><span class="badge bg-success">True</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span class="badge bg-danger">False</span></td>
+                                        }
+
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <th>No Record Found for the search Id</th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        Are you sure ? to delete this department
+                        <hr />
+                        <form asp-action="Delete">
+                            <input asp-for="Id" type="hidden" />
+                            <input type="submit" value="Delete" class="btn btn-success" /> |  <a asp-action="Index"class="btn btn-danger">Cancel</a>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
+            <!-- /.col -->
+            <div class="col-md-2 col-sm-0"></div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebApplication1.Models.VenderInformations>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text text-info">Vender Information</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-append">
+                            <a asp-controller="Vender" asp-action="Create" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Add New
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Company Name</th>
+                            <th>TRN</th>
+                            <th>Contact Person</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.CompanyName</td>
+                                <td>@item.TRNNumber</td>
+                                <td>@item.ContactPersonName</td>
+                                <td>@item.MobileNumber</td>
+                                <td>@item.Email</td>
+                                <td>@item.IsActive</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->
