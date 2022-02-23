@@ -1,0 +1,115 @@
+﻿@model WebApplication1.Models.EmployeeInformations
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-blue">
+                        <h3 class="card-title text text-white">Details</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                @if (Model != null)
+                                {                                   
+                                <tr>
+                                    <th>Name</th>
+                                    <td>@Model.Name</td>
+                                    <th>Departmant</th>
+                                    <td>@(Model.DepartmentInformations == null ? "Unknown" : Model.DepartmentInformations.Name)</td>
+                                </tr>
+                                    <tr>
+                                        <th>Designation</th>
+                                        <td>@(Model.DesignationInformations == null ? "Unknown" : Model.DesignationInformations.Name)</td>
+                                        <th>Gender</th>
+                                        <td>@(Model.GenderInformations == null ? "Unknown" : Model.GenderInformations.GenderName)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mobile</th>
+                                        <td>@Model.MobileNumber</td>
+                                        <th>EmergencyContact</th>
+                                        <td>@Model.EmergencyContactNumber</td>
+                                    </tr>
+                                    <tr>
+                                        <th>E-Mail</th>
+                                        <td>@Model.EmailAddress</td>
+                                        <th>Address</th>
+                                        <td>@Model.Address</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Visa Expiry</th>
+                                        <td>@Model.VisaExpiry <span class="badge bg-danger">Days to Expire @(Model.VisaExpiry.Day - System.DateTime.Now.Day)</span></td>
+                                        <th>Licience Expiry</th>
+                                        <td>@Model.DrivingLicienceExpiry <span class="badge bg-danger">Days to Expire @(Model.DrivingLicienceExpiry.Day - System.DateTime.Now.Day)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Passport Expiry</th>
+                                        <td>@Model.PassportExpiry <span class="badge bg-danger">Days to Expire @(Model.PassportExpiry.Day - System.DateTime.Now.Day)</span></td>
+                                        <th>Id Card Expiry</th>
+                                        <td>@Model.IdCardExpiry <span class="badge bg-danger">Days to Expire @(Model.IdCardExpiry.Day - System.DateTime.Now.Day)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Description</th>
+                                        <td colspan="3">@Model.Description</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Hire Date</th>
+                                        <td>@Model.HireDate</td>
+                                        <th>Age</th>
+                                        <td><span class="badge bg-success">@(System.DateTime.Now.Year - Model.DateofBirth.Year) Year</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Created By</th>
+                                        <td>@(Model.UserInformation == null ? "Unknown" : Model.UserInformation.FullName)</td>
+                                        <th>Created Date</th>
+                                        <td>@Model.CreatedDate</td>
+                                    </tr>
+                                    <tr>
+                                        <th>DOB</th>
+                                        <td>@Model.DateofBirth</td>
+                                        <th>Status</th>
+                                        @if (Model.IsActive == true)
+                                        {
+                                            <td><span class="badge bg-success">True</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span class="badge bg-danger">False</span></td>
+                                        }
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <th>No Record Found for the search Id</th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
+            <!-- /.col -->
+            <div class="col-md-2 col-sm-0"></div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+@if (Model != null)
+{
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { Id = Model.Id }) |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+
+

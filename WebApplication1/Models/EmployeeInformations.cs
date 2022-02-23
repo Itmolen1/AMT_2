@@ -26,11 +26,18 @@ namespace WebApplication1.Models
         public string EmailAddress { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; } = System.DateTime.Now;
+        public DateTime VisaExpiry { get; set; } = System.DateTime.Now;
+        public DateTime PassportExpiry { get; set; } = System.DateTime.Now;
+        public DateTime IdCardExpiry { get; set; } = System.DateTime.Now;
+        public DateTime DrivingLicienceExpiry { get; set; } = System.DateTime.Now;
         public DateTime DateofBirth { get; set; } = System.DateTime.Now;
         public DateTime HireDate { get; set; } = System.DateTime.Now;
         public string ImageUrl { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Please select Department")]
         public int DepartmentId { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Please select Blood Group")]
         public int BloodGroupId { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Please select Designation")]
         public int DesignationId { get; set; }
         public bool IsActive { get; set; }
         public int Age { get; set; }
@@ -43,6 +50,8 @@ namespace WebApplication1.Models
         public DesignationInformations DesignationInformations { get; set; }
         [ForeignKey("BloodGroupId")]
         public BloodGroupInformations BloodGroupInformations { get; set; }
+        [ForeignKey("GenderId")]
+        public GenderInformations GenderInformations { get; set; }
 
     }
 }

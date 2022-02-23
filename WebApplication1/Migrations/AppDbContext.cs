@@ -22,8 +22,9 @@ namespace WebApplication1
         public DbSet<ProductInfo> ProductInfos { get; set; }
         public DbSet<CustomerInformations> CustomerInformations { get; set; }
         public DbSet<VenderInformations> VenderInformations { get; set; }
-       
-       
+        public DbSet<VehicleTypeInformations> VehicleTypeInformations { get; set; }
+        public DbSet<VehicleInformation> VehicleInformation { get; set; }
+              
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Seed();

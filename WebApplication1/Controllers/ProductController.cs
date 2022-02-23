@@ -43,6 +43,7 @@ namespace WebApplication1.Controllers
             {
                 List<UnitInformations> unitInformations = new List<UnitInformations>();
                 unitInformations = await _unitRepository.All();
+
                 unitInformations.Insert(0, new UnitInformations { Id = 0, Name = "Please select unit" });
                 ViewBag.unitInformations = unitInformations;
                 ProductInfo productInfo = new ProductInfo();

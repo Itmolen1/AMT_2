@@ -14,5 +14,6 @@ namespace WebApplication1.Models
         public int Id { get; set; }
         public string GenderName { get; set; }
         public List<UserInformation> UserInformations { get; set; }
+        public List<EmployeeInformations> EmployeeInformations { get; set; }
     }
 }

@@ -1,0 +1,189 @@
+﻿@model WebApplication1.Models.EmployeeInformations
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        @if (Model != null && Model.Name != null)
+                        {
+                            <h3 class="card-title">Update Employee</h3>
+                        }
+                        else
+                        {
+                            <h3 class="card-title">Create New Employee</h3>
+                        }
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <input asp-for="Id" type="hidden" />
+                                <input asp-for="CreatedBy" type="hidden" />
+                                <input asp-for="CreatedDate" type="hidden" />
+                                <input asp-for="IsActive" type="hidden" />
+                                <div class="col-lg-2 col-sm-6">
+                                    <label asp-for="Name">Name</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6">
+                                    <input type="text" name="Name" asp-for="Name" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Employee Name">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="GenderId">Gender</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <select class="custom-select rounded-0" id="GenderId" name="GenderId" asp-for="GenderId">
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+                                    <span asp-validation-for="GenderId" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="MobileNumber">Mobile</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="MobileNumber" asp-for="MobileNumber" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Mobile Number">
+                                    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="EmergencyContactNumber">Emergency Number</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="EmergencyContactNumber" asp-for="EmergencyContactNumber" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Emergency Contact Number">
+                                    <span asp-validation-for="EmergencyContactNumber" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Address">Address</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="Address" asp-for="Address" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Employee Address">
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="EmailAddress">Email</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="EmailAddress" asp-for="EmailAddress" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Email Address">
+                                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Name">Department</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <select class="custom-select rounded-0" id="DepartmentId" name="DepartmentId" asp-for="DepartmentId">
+                                        @foreach (var Dep in ViewBag.Departments)
+                                        {
+                                            <option value="@Dep.Id">@Dep.Name</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="BloodGroupId">Designation</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <select class="custom-select rounded-0" id="DesignationId" name="DesignationId" asp-for="DesignationId">
+                                        @foreach (var Desig in ViewBag.Designations)
+                                        {
+                                            <option value="@Desig.Id">@Desig.Name</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="DesignationId" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="BloodGroupId">Blood group</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <select class="custom-select rounded-0" id="BloodGroupId" name="BloodGroupId" asp-for="BloodGroupId">
+                                        @foreach (var blood in ViewBag.BloogGroups)
+                                        {
+                                            <option value="@blood.Id">@blood.Name</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="BloodGroupId" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="PassportExpiry">Passport Expiry</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="date" name="PassportExpiry" asp-for="PassportExpiry" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Passport Expiry">
+                                    <span asp-validation-for="PassportExpiry" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="VisaExpiry">Visa Expiry</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="date" name="VisaExpiry" asp-for="VisaExpiry" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Visa Expiry">
+                                    <span asp-validation-for="VisaExpiry" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="IdCardExpiry">Id Card Expiry</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="date" name="IdCardExpiry" asp-for="IdCardExpiry" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Id Card Expiry">
+                                    <span asp-validation-for="IdCardExpiry" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="DrivingLicienceExpiry">Licience</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="date" name="DrivingLicienceExpiry" asp-for="DrivingLicienceExpiry" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Driving Licience Expiry">
+                                    <span asp-validation-for="DrivingLicienceExpiry" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="DateofBirth">DOB</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="date" name="DateofBirth" asp-for="DateofBirth" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Date of Birth">
+                                    <span asp-validation-for="DateofBirth" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="HireDate">Hire Date</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="date" name="HireDate" asp-for="HireDate" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Hire Date">
+                                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Description">Description</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <textarea name="Description" asp-for="Description" autocomplete="off" class="form-control text-capitalize" placeholder="Employee Description"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <input type="submit" value="Submit" class="btn btn-success" /> | 
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+
+
+
+
+

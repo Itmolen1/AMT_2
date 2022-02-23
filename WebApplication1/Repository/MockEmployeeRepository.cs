@@ -20,7 +20,13 @@ namespace WebApplication1.Repository
 
         public async Task<List<EmployeeInformations>> All()
         {
-            var employess = await _context.EmployeeInformations.ToListAsync();
+            var employess = await _context.EmployeeInformations.Where(x => x.IsActive == true)
+                .Include("UserInformation")
+                .Include("BloodGroupInformations")
+                .Include("DesignationInformations")
+                .Include("DepartmentInformations")
+                .Include("GenderInformations")
+                .ToListAsync();
             return employess;
         }
 
@@ -42,14 +48,45 @@ namespace WebApplication1.Repository
             }
         }
 
-        public Task<EmployeeInformations> Insert(EmployeeInformations employeeInformations)
+        public async Task<EmployeeInformations> Insert(EmployeeInformations employeeInformations)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _context.AddAsync(employeeInformations);
+                await _context.SaveChangesAsync();
+
+                EmployeeInformations employee = new EmployeeInformations();
+
+                if (employeeInformations.Id > 0)
+                {
+                    employee = await _context.EmployeeInformations.FirstOrDefaultAsync(x => x.Id == employeeInformations.Id);
+                    return employee;
+                }
+                else
+                {
+                    return employeeInformations;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public Task<EmployeeInformations> Update(EmployeeInformations employeeInformations)
+        public async Task<EmployeeInformations> Update(EmployeeInformations employeeInformations)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var employee = _context.EmployeeInformations.Attach(employeeInformations);
+                employee.State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                return employeeInformations;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

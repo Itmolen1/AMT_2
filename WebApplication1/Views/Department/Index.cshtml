@@ -23,7 +23,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
-                <table class="table table-head-fixed text-nowrap">
+                <table class="table table-head-fixed text-nowrap" id="example1">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -37,20 +37,20 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Name</td>
-                            <td>@item.UserInformation.FullName</td>
-                            <td>@item.CreatedDate</td>
-                            <td>@item.IsActive</td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new {  Id=item.Id  }) |
-                                @Html.ActionLink("Details", "Details", new { Id = item.Id  }) |
-                                @Html.ActionLink("Delete", "Delete", new { Id = item.Id  })
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.UserInformation.FullName</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.IsActive</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+                                </td>
+                            </tr>
                         }
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
             <!-- /.card-body -->
@@ -61,4 +61,7 @@
 <!-- /.row -->
 
 
-    
+
+@section scripts{
+<script src="~/js/CustomeDataTable.js"></script>
+}

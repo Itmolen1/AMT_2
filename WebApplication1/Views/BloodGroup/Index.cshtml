@@ -22,7 +22,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
-                <table class="table table-head-fixed text-nowrap">
+                <table class="table table-head-fixed text-nowrap" id="example1">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -33,7 +33,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>                        
+                    <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
@@ -58,3 +58,7 @@
     </div>
 </div>
 <!-- /.row -->
+
+@section scripts{
+    <script src="~/js/CustomeDataTable.js"></script>
+}

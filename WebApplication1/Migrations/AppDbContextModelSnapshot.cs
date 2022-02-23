@@ -42,7 +42,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("BloodGroupInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 21, 9, 38, 11, 674, DateTimeKind.Local), IsActive = true, Name = "A+" }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 330, DateTimeKind.Local), IsActive = true, Name = "A+" }
                     );
                 });
 
@@ -91,7 +91,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("CustomerInformations");
 
                     b.HasData(
-                        new { Id = 1, Address = "nest 18, street k5 Allon", Area = "Mufraq", CompanyName = "Test Name", ContactPersonName = "Seed Name", Country = "UAE", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 21, 9, 38, 11, 671, DateTimeKind.Local), Description = "this is test description from seed", Email = "this@test.com", IsActive = true, LandLine = "34564613564", MobileNumber = "121313454112", State = "Abu Dhabi", TRNNumber = "123456789123456" }
+                        new { Id = 1, Address = "nest 18, street k5 Allon", Area = "Mufraq", CompanyName = "Test Name", ContactPersonName = "Seed Name", Country = "UAE", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 326, DateTimeKind.Local), Description = "this is test description from seed", Email = "this@test.com", IsActive = true, LandLine = "34564613564", MobileNumber = "121313454112", State = "Abu Dhabi", TRNNumber = "123456789123456" }
                     );
                 });
 
@@ -118,7 +118,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("DepartmentInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 21, 9, 38, 11, 658, DateTimeKind.Local), IsActive = true, Name = "Accounting" }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 292, DateTimeKind.Local), IsActive = true, Name = "Accounting" }
                     );
                 });
 
@@ -145,7 +145,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("DesignationInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 21, 9, 38, 11, 663, DateTimeKind.Local), IsActive = true, Name = "Driver" }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 307, DateTimeKind.Local), IsActive = true, Name = "Driver" }
                     );
                 });
 
@@ -175,6 +175,8 @@ namespace WebApplication1.Migrations
 
                     b.Property<int>("DesignationId");
 
+                    b.Property<DateTime>("DrivingLicienceExpiry");
+
                     b.Property<string>("EmailAddress");
 
                     b.Property<string>("EmergencyContactNumber");
@@ -182,6 +184,8 @@ namespace WebApplication1.Migrations
                     b.Property<int>("GenderId");
 
                     b.Property<DateTime>("HireDate");
+
+                    b.Property<DateTime>("IdCardExpiry");
 
                     b.Property<string>("ImageUrl");
 
@@ -193,6 +197,10 @@ namespace WebApplication1.Migrations
                         .IsRequired()
                         .HasMaxLength(200);
 
+                    b.Property<DateTime>("PassportExpiry");
+
+                    b.Property<DateTime>("VisaExpiry");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BloodGroupId");
@@ -203,10 +211,12 @@ namespace WebApplication1.Migrations
 
                     b.HasIndex("DesignationId");
 
+                    b.HasIndex("GenderId");
+
                     b.ToTable("EmployeeInformations");
 
                     b.HasData(
-                        new { Id = 1, Address = "jos 10 faren street s6, no 1099", Age = 25, BloodGroupId = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 21, 9, 38, 11, 677, DateTimeKind.Local), DateofBirth = new DateTime(2022, 2, 21, 9, 38, 11, 677, DateTimeKind.Local), DepartmentId = 1, Description = "this is test Employee From Seed", DesignationId = 1, EmailAddress = "test@gmail.com", EmergencyContactNumber = "64648464412", GenderId = 1, HireDate = new DateTime(2022, 2, 21, 9, 38, 11, 678, DateTimeKind.Local), ImageUrl = "jas.jpg", IsActive = true, MobileNumber = "1231464612", Name = "Test Name" }
+                        new { Id = 1, Address = "jos 10 faren street s6, no 1099", Age = 25, BloodGroupId = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 339, DateTimeKind.Local), DateofBirth = new DateTime(2022, 2, 22, 12, 33, 32, 339, DateTimeKind.Local), DepartmentId = 1, Description = "this is test Employee From Seed", DesignationId = 1, DrivingLicienceExpiry = new DateTime(2022, 2, 22, 12, 33, 32, 340, DateTimeKind.Local), EmailAddress = "test@gmail.com", EmergencyContactNumber = "64648464412", GenderId = 1, HireDate = new DateTime(2022, 2, 22, 12, 33, 32, 339, DateTimeKind.Local), IdCardExpiry = new DateTime(2022, 2, 22, 12, 33, 32, 339, DateTimeKind.Local), ImageUrl = "jas.jpg", IsActive = true, MobileNumber = "1231464612", Name = "Test Name", PassportExpiry = new DateTime(2022, 2, 22, 12, 33, 32, 340, DateTimeKind.Local), VisaExpiry = new DateTime(2022, 2, 22, 12, 33, 32, 340, DateTimeKind.Local) }
                     );
                 });
 
@@ -258,7 +268,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("ProductInfos");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 21, 9, 38, 11, 667, DateTimeKind.Local), Description = "this is from seed,for test purpose", IsActive = true, Name = "Letter", UnitId = 1 }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 315, DateTimeKind.Local), Description = "this is from seed,for test purpose", IsActive = true, Name = "Letter", UnitId = 1 }
                     );
                 });
 
@@ -287,7 +297,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("TrackUpdateInformations");
 
                     b.HasData(
-                        new { Id = 1, AfterUpdate = "Driver Name", BeforeUpdate = "Driver", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 21, 9, 38, 11, 681, DateTimeKind.Local), IsActive = true, UpdateInfo = "Driver Update to Driver Name" }
+                        new { Id = 1, AfterUpdate = "Driver Name", BeforeUpdate = "Driver", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 344, DateTimeKind.Local), IsActive = true, UpdateInfo = "Driver Update to Driver Name" }
                     );
                 });
 
@@ -314,7 +324,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("UnitInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 21, 9, 38, 11, 665, DateTimeKind.Local), IsActive = true, Name = "Letter" }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 311, DateTimeKind.Local), IsActive = true, Name = "Letter" }
                     );
                 });
 
@@ -351,7 +361,82 @@ namespace WebApplication1.Migrations
                     b.ToTable("UserInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedDate = new DateTime(2022, 2, 21, 9, 38, 11, 658, DateTimeKind.Local), FullName = "Admin", GenderId = 1, IsActive = true, UserName = "admin@gmail.com", UserPassword = "12345678" }
+                        new { Id = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 292, DateTimeKind.Local), FullName = "Admin", GenderId = 1, IsActive = true, UserName = "admin@gmail.com", UserPassword = "12345678" }
+                    );
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.VehicleInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Brand");
+
+                    b.Property<string>("Color");
+
+                    b.Property<string>("Comments");
+
+                    b.Property<int>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("InsuranceExpiry");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Model");
+
+                    b.Property<DateTime>("MulkiyaExpiry");
+
+                    b.Property<string>("PlateNumber")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("RegisterdRegion")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("TCNumber");
+
+                    b.Property<int>("VehicleTypeId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("VehicleTypeId");
+
+                    b.ToTable("VehicleInformation");
+
+                    b.HasData(
+                        new { Id = 1, Brand = "Toyota", Color = "Red", Comments = "this from seed for test", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 306, DateTimeKind.Local), InsuranceExpiry = new DateTime(2022, 2, 22, 12, 33, 32, 307, DateTimeKind.Local), IsActive = true, Model = "2008", MulkiyaExpiry = new DateTime(2022, 2, 22, 12, 33, 32, 307, DateTimeKind.Local), PlateNumber = "2005", RegisterdRegion = "Abu Dhabi", TCNumber = "13131", VehicleTypeId = 1 }
+                    );
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.VehicleTypeInformations", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("TypeName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.ToTable("VehicleTypeInformations");
+
+                    b.HasData(
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 331, DateTimeKind.Local), IsActive = true, TypeName = "Heavy Vehicle" }
                     );
                 });
 
@@ -400,7 +485,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("VenderInformations");
 
                     b.HasData(
-                        new { Id = 1, Address = "nest 18, street k5 Allon", Area = "Mufraq", CompanyName = "Test Vender", ContactPersonName = "Seed Vender", Country = "UAE", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 21, 9, 38, 11, 674, DateTimeKind.Local), Description = "this is test description from seed", Email = "this@test.com", IsActive = true, LandLine = "34564613564", MobileNumber = "121313454112", State = "Abu Dhabi", TRNNumber = "123456789123456" }
+                        new { Id = 1, Address = "nest 18, street k5 Allon", Area = "Mufraq", CompanyName = "Test Vender", ContactPersonName = "Seed Vender", Country = "UAE", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 22, 12, 33, 32, 330, DateTimeKind.Local), Description = "this is test description from seed", Email = "this@test.com", IsActive = true, LandLine = "34564613564", MobileNumber = "121313454112", State = "Abu Dhabi", TRNNumber = "123456789123456" }
                     );
                 });
 
@@ -457,6 +542,11 @@ namespace WebApplication1.Migrations
                         .WithMany("EmployeeInformations")
                         .HasForeignKey("DesignationId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WebApplication1.Models.GenderInformations", "GenderInformations")
+                        .WithMany("EmployeeInformations")
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebApplication1.Models.ProductInfo", b =>
@@ -493,6 +583,27 @@ namespace WebApplication1.Migrations
                     b.HasOne("WebApplication1.Models.GenderInformations", "Gender")
                         .WithMany("UserInformations")
                         .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.VehicleInformation", b =>
+                {
+                    b.HasOne("WebApplication1.Models.UserInformation", "UserInformation")
+                        .WithMany("VehicleInformation")
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WebApplication1.Models.VehicleTypeInformations", "VehicleTypeInformations")
+                        .WithMany("VehicleInformation")
+                        .HasForeignKey("VehicleTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.VehicleTypeInformations", b =>
+                {
+                    b.HasOne("WebApplication1.Models.UserInformation", "UserInformation")
+                        .WithMany("VehicleTypeInformations")
+                        .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

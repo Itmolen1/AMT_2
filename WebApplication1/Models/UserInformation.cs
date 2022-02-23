@@ -39,6 +39,8 @@ namespace WebApplication1.Models
         public List<ProductInfo> ProductInfos { get; set; }
         public List<CustomerInformations> CustomerInformations { get; set; }
         public List<VenderInformations> VenderInformations { get; set; }
+        public List<VehicleTypeInformations> VehicleTypeInformations { get; set; }
+        public List<VehicleInformation> VehicleInformation { get; set; }
         
     }
 }

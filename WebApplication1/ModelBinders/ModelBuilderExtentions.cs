@@ -51,7 +51,36 @@ namespace WebApplication1.ModelBinders
                .HasOne(p => p.UserInformation)
                .WithMany(q => q.DesignationInformations)
                .HasForeignKey(x => x.CreatedBy);
-            
+
+            modelBuilder.Entity<VehicleInformation>()
+               .HasOne(p => p.UserInformation)
+               .WithMany(q => q.VehicleInformation)
+               .HasForeignKey(x => x.CreatedBy);
+
+            modelBuilder.Entity<VehicleInformation>()
+               .HasOne(p => p.VehicleTypeInformations)
+               .WithMany(q => q.VehicleInformation)
+               .HasForeignKey(x => x.VehicleTypeId);
+
+            modelBuilder.Entity<VehicleInformation>()
+                .HasData(new VehicleInformation
+                {
+                    Id = 1,
+                    CreatedBy = 1,
+                    CreatedDate = System.DateTime.Now,
+                    IsActive = true,
+                    Model = "2008",
+                    VehicleTypeId = 1,
+                    Color = "Red",
+                    Brand = "Toyota",
+                    InsuranceExpiry = System.DateTime.Now,
+                    MulkiyaExpiry = System.DateTime.Now,
+                    PlateNumber = "2005",
+                    Comments = "this from seed for test",
+                    RegisterdRegion = "Abu Dhabi",
+                    TCNumber = "13131"                    
+                });
+
             modelBuilder.Entity<DesignationInformations>()
                 .HasData(new DesignationInformations
                 {
@@ -164,6 +193,21 @@ namespace WebApplication1.ModelBinders
                     Name = "A+"
                 });
 
+            modelBuilder.Entity<VehicleTypeInformations>()
+                .HasData(new VehicleTypeInformations
+                {
+                    Id = 1,
+                    CreatedBy = 1,
+                    CreatedDate = System.DateTime.Now,
+                    IsActive = true,
+                    TypeName = "Heavy Vehicle"
+                });
+
+            modelBuilder.Entity<VehicleTypeInformations>()
+                .HasOne(p => p.UserInformation)
+                .WithMany(q => q.VehicleTypeInformations)
+                .HasForeignKey(x => x.CreatedBy);
+
             modelBuilder.Entity<EmployeeInformations>()
                 .HasOne(p => p.UserInformation)
                 .WithMany(q => q.EmployeeInformations)
@@ -183,6 +227,11 @@ namespace WebApplication1.ModelBinders
               .HasOne(p => p.BloodGroupInformations)
               .WithMany(q => q.EmployeeInformations)
               .HasForeignKey(r => r.BloodGroupId);
+
+            modelBuilder.Entity<EmployeeInformations>()
+              .HasOne(p => p.GenderInformations)
+              .WithMany(q => q.EmployeeInformations)
+              .HasForeignKey(r => r.GenderId);
 
             modelBuilder.Entity<EmployeeInformations>()
                .HasData(
@@ -205,7 +254,12 @@ namespace WebApplication1.ModelBinders
                    ImageUrl = "jas.jpg",
                    IsActive = true,
                    MobileNumber = "1231464612",
-                   EmergencyContactNumber = "64648464412"
+                   EmergencyContactNumber = "64648464412",
+                   IdCardExpiry = System.DateTime.Now,
+                   VisaExpiry = System.DateTime.Now,
+                   PassportExpiry = System.DateTime.Now,
+                   DrivingLicienceExpiry = System.DateTime.Now
+               
                });
 
             modelBuilder.Entity<TrackUpdateInformations>()

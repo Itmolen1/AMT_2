@@ -1,0 +1,129 @@
+﻿@model WebApplication1.Models.VehicleInformation
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        @if (Model != null && Model.PlateNumber != null)
+                        {
+                            <h3 class="card-title">Update Vehicle</h3>
+                        }
+                        else
+                        {
+                            <h3 class="card-title">Create New Vehicle</h3>
+                        }
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <input asp-for="Id" type="hidden" />
+                                <input asp-for="CreatedBy" type="hidden" />
+                                <input asp-for="CreatedDate" type="hidden" />
+                                <input asp-for="IsActive" type="hidden" />
+                                <div class="col-lg-2 col-sm-6">
+                                    <label asp-for="VehicleTypeId">Vehicle type</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6">
+                                    <select class="custom-select rounded-0" id="VehicleTypeId" name="VehicleTypeId" asp-for="VehicleTypeId">
+                                        @foreach (var vehicleType in ViewBag.vehicleTypes)
+                                        {
+                                            <option value="@vehicleType.Id">@vehicleType.TypeName</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="VehicleTypeId" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="PlateNumber">Plate Number</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="PlateNumber" asp-for="PlateNumber" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Plate Number">
+                                    <span asp-validation-for="PlateNumber" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="TCNumber">TC Number</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="TCNumber" asp-for="TCNumber" autocomplete="off" class="form-control text-capitalize" placeholder="Enter TC Number">
+                                    <span asp-validation-for="TCNumber" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="TCNumber">TC Number</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="Model" asp-for="Model" autocomplete="on" class="form-control text-capitalize" placeholder="Enter Model">
+                                    <span asp-validation-for="Model" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Color">Color</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="Color" asp-for="Color" autocomplete="on" class="form-control text-capitalize" placeholder="Enter Color">
+                                    <span asp-validation-for="Color" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="MulkiyaExpiry">Mulkiya Expiry</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="date" name="MulkiyaExpiry" asp-for="MulkiyaExpiry" autocomplete="on" class="form-control text-capitalize" placeholder="Enter Mulkiya Expiry">
+                                    <span asp-validation-for="MulkiyaExpiry" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="InsuranceExpiry">Insurance Expiry</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="date" name="InsuranceExpiry" asp-for="InsuranceExpiry" autocomplete="on" class="form-control text-capitalize" placeholder="Enter insurance Expiry">
+                                    <span asp-validation-for="InsuranceExpiry" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="RegisterdRegion">Registerd Region</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <select asp-for="RegisterdRegion" class="custom-select rounded-0">
+                                        <option value="Abu Dhabi" selected="selected">Abu Dhabi</option>
+                                        <option value="Dubai" selected="selected">Dubai</option>
+                                        <option value="Sharjah" selected="selected">Sharjah</option>
+                                        <option value="Fujairah" selected="selected">Fujairah</option>
+                                        <option value="Ajman" selected="selected">Ajman</option>
+                                        <option value="Umm Al Quwain" selected="selected">Umm Al Quwain</option>
+                                        <option value="Ras Al Khaimah" selected="selected">Ras Al Khaimah</option>
+                                    </select>
+                                    <span asp-validation-for="RegisterdRegion" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Brand">Brand</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="datetime" name="Brand" asp-for="Brand" autocomplete="on" class="form-control text-capitalize" placeholder="Enter Brand">
+                                    <span asp-validation-for="Brand" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <input type="submit" value="Submit" class="btn btn-success" /> |
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>

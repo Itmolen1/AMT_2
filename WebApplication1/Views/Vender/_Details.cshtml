@@ -1,0 +1,115 @@
+﻿@model WebApplication1.Models.VenderInformations
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-sm-0"></div>
+            <div class="col-md-8 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title text text-blue">Vender Details</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>@Model.Id</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>@Model.CompanyName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TRN Number</td>
+                                        <td>@Model.TRNNumber</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contact Person</td>
+                                        <td>@Model.ContactPersonName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contact Number</td>
+                                        <td>@Model.MobileNumber</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Land Line Number</td>
+                                        <td>@Model.LandLine</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-Mail</td>
+                                        <td>@Model.Email</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Country/State,Area</td>
+                                        <td>@Model.Country, @Model.State,@Model.Area</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <td>@Model.Address</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>@Model.Description</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created By</td>
+                                        <td>@(Model.UserInformation == null ? "Unknown" : Model.UserInformation.FullName)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>On Date</td>
+                                        <td>@Model.CreatedDate</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+
+                                        @if (Model.IsActive == true)
+                                        {
+                                            <td><span class="badge bg-success">True</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span class="badge bg-danger">False</span></td>
+                                        }
+
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <th>No Record Found for the search Id</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="/Customer" class="btn btn-info mt-2">Back to Customer list</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
+            <!-- /.col -->
+            <div class="col-md-2 col-sm-0"></div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+@if (Model != null)
+{
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { Id = Model.Id }) |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
