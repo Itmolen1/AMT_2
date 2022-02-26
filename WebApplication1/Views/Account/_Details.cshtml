@@ -1,4 +1,4 @@
-﻿@model WebApplication1.Models.ProductInfo
+﻿@model WebApplication1.Models.AccountsInformation
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,20 +21,16 @@
                                 @if (Model != null)
                                 {
                                     <tr>
-                                        <td>ID</td>
-                                        <td>@Model.Id</td>
+                                        <td class="text text-info">Control Account</td>
+                                        <td class="text text-info">@Model.HeadAccountsInformations.ControlAccountInformations.Code | @Model.HeadAccountsInformations.ControlAccountInformations.ControlAccountName</td>
                                     </tr>
                                     <tr>
-                                        <td>Name</td>
-                                        <td>@Model.Name</td>
+                                        <td class="text text-indigo">Head Account</td>
+                                        <td class="text text-indigo">@Model.HeadAccountsInformations.Code | @Model.HeadAccountsInformations.HeadAccountTitle</td>
                                     </tr>
                                     <tr>
-                                        <td>Unit</td>
-                                        <td>@(Model.UnitInformations == null ? "Unknown" : Model.UnitInformations.Name) </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Description</td>
-                                        <td>@Model.Description</td>
+                                        <td>Account</td>
+                                        <td>@Model.Code | @Model.AccountTitle</td>
                                     </tr>
                                     <tr>
                                         <td>Created By</td>

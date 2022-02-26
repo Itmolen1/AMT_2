@@ -24,6 +24,10 @@ namespace WebApplication1
         public DbSet<VenderInformations> VenderInformations { get; set; }
         public DbSet<VehicleTypeInformations> VehicleTypeInformations { get; set; }
         public DbSet<VehicleInformation> VehicleInformation { get; set; }
+        public DbSet<ControlAccountInformations> ControlAccountInformations { get; set; }
+        public DbSet<HeadAccountsInformations> HeadAccountsInformations { get; set; }
+        public DbSet<AccountsInformation> AccountsInformations { get; set; }
+        public DbSet<TransictionInformations> TransictionInformations { get; set; }
               
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

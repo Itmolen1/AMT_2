@@ -1,0 +1,68 @@
+﻿@model List<WebApplication1.Models.TransictionInformations>
+
+@{
+    ViewData["Title"] = "Transiction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text text-info align-content-center">Journal</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-append">
+                            @*<a asp-controller="Transiction" asp-action="Create" class="btn btn-info">
+                                    <i class="fas fa-plus"></i> Add New
+                                </a>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap table-bordered" id="example1">
+
+                    <tbody>
+                        <tr>
+                            <th>Date</th>
+                            <th colspan="3">Particular</th>
+                            <th>Debit</th>
+                            <th>Credit</th>
+                        </tr>
+                        @{int i = 1;}
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                @if (i == 1)
+                                {
+                                    <td rowspan="2">@item.ForDate.ToString("dd-MMM-yyyy")</td>
+                                }
+                                <td colspan="3">@(item.AccountsInformation == null ? "Unknown" : item.AccountsInformation.AccountTitle)</td>
+                                <td>@item.Dr</td>
+                                <td>@item.Cr</td>
+                            </tr>
+                            i = i + 1;
+                        }
+                    </tbody>
+                    @if (Model.Count > 0)
+                    {
+                        <tfoot>
+
+                            <tr>
+                                <td colspan="6">@Model[0].Description</td>
+                            </tr>
+                        </tfoot>
+                    }
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->
+<a asp-action="Index">Back to List</a>

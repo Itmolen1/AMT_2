@@ -145,6 +145,48 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(int Id)
+        {
+            try
+            {
+                var employee = await _employeeRepository.GetById(Id);
+                return PartialView("_Delete", employee);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(EmployeeInformations employeeInformations)
+        {
+            try
+            {
+
+                if (employeeInformations != null)
+                {
+                    var employee = await _employeeRepository.GetById(employeeInformations.Id);
+
+                    employee.IsActive = false;
+
+                    await _employeeRepository.Update(employee);
+
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return PartialView("_Details", employeeInformations);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         [NonAction]
         public async Task<List<DepartmentInformations>> GetDepartments()
         {

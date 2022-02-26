@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebApplication1.Models.AccountsInformation>
+
+@{
+    ViewData["Title"] = "Head Account";
+}
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text text-info">Account Informations</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-append">
+                            <a asp-controller="Account" asp-action="Create" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Add New
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap" id="example1">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Code</th>
+                            <th>Control Account</th>
+                            <th>Head Account</th>
+                            <th>Account Title</th>
+                            <th>Create By</th>
+                            <th>Created Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Code</td>
+                                <td><a href="/HeadAccount/GetHeadAccountByControlAccount/@item.HeadAccountsInformations.ControlAccountId">@(item.HeadAccountsInformations.ControlAccountInformations == null ? "unknow" : item.HeadAccountsInformations.ControlAccountInformations.ControlAccountName)</a></td>
+                                <td><a href="/Account/GetAccountByHeadAccountId/@item.HeadAccountId" class="text text-indigo">@(item.HeadAccountsInformations == null ? "Unknown" : item.HeadAccountsInformations.HeadAccountTitle)</a></td>
+                                <td>@item.AccountTitle</td>
+                                <td>@item.UserInformation.FullName</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.IsActive</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { Id = item.Id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->
+
+
+@section scripts{
+    <script src="~/js/CustomeDataTable.js"></script>
+}

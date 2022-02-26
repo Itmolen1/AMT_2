@@ -41,6 +41,10 @@ namespace WebApplication1.Models
         public List<VenderInformations> VenderInformations { get; set; }
         public List<VehicleTypeInformations> VehicleTypeInformations { get; set; }
         public List<VehicleInformation> VehicleInformation { get; set; }
+        public List<ControlAccountInformations> ControlAccountInformations { get; set; }
+        public List<HeadAccountsInformations> HeadAccountsInformations { get; set; }
+        public List<AccountsInformation> AccountsInformation { get; set; }
+        public List<TransictionInformations> TransictionInformations { get; set; }
         
     }
 }

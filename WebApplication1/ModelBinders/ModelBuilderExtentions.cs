@@ -34,7 +34,8 @@ namespace WebApplication1.ModelBinders
                });
 
             modelBuilder.Entity<DepartmentInformations>()
-                .HasData(new DepartmentInformations {
+                .HasData(new DepartmentInformations
+                {
                     Id = 1,
                     CreatedBy = 1,
                     CreatedDate = System.DateTime.Now,
@@ -78,7 +79,7 @@ namespace WebApplication1.ModelBinders
                     PlateNumber = "2005",
                     Comments = "this from seed for test",
                     RegisterdRegion = "Abu Dhabi",
-                    TCNumber = "13131"                    
+                    TCNumber = "13131"
                 });
 
             modelBuilder.Entity<DesignationInformations>()
@@ -90,7 +91,7 @@ namespace WebApplication1.ModelBinders
                     IsActive = true,
                     Name = "Driver"
                 });
-            
+
             modelBuilder.Entity<BloodGroupInformations>()
                 .HasOne(p => p.UserInformation)
                 .WithMany(q => q.BloodGroupInformations)
@@ -152,7 +153,7 @@ namespace WebApplication1.ModelBinders
                    Area = "Mufraq",
                    State = "Abu Dhabi",
                    Description = "this is test description from seed",
-                   Email ="this@test.com",
+                   Email = "this@test.com",
                    CreatedBy = 1,
                    CreatedDate = System.DateTime.Now,
                    IsActive = true
@@ -182,7 +183,7 @@ namespace WebApplication1.ModelBinders
                   CreatedDate = System.DateTime.Now,
                   IsActive = true
               });
-            
+
             modelBuilder.Entity<BloodGroupInformations>()
                 .HasData(new BloodGroupInformations
                 {
@@ -259,7 +260,7 @@ namespace WebApplication1.ModelBinders
                    VisaExpiry = System.DateTime.Now,
                    PassportExpiry = System.DateTime.Now,
                    DrivingLicienceExpiry = System.DateTime.Now
-               
+
                });
 
             modelBuilder.Entity<TrackUpdateInformations>()
@@ -279,6 +280,103 @@ namespace WebApplication1.ModelBinders
                     AfterUpdate = "Driver Name"
                 });
 
+            modelBuilder.Entity<ControlAccountInformations>()
+           .HasOne(p => p.UserInformation)
+           .WithMany(q => q.ControlAccountInformations)
+           .HasForeignKey(r => r.CreatedBy);
+
+            modelBuilder.Entity<ControlAccountInformations>()
+                .HasData(new ControlAccountInformations
+                {
+                    Id = 1,
+                    CreatedBy = 1,
+                    CreatedDate = System.DateTime.Now,
+                    IsActive = true,
+                    ControlAccountName = "ASSETS",
+                    Code = 1001
+                });
+
+            modelBuilder.Entity<HeadAccountsInformations>()
+           .HasOne(p => p.UserInformation)
+           .WithMany(q => q.HeadAccountsInformations)
+           .HasForeignKey(r => r.CreatedBy);
+
+            modelBuilder.Entity<HeadAccountsInformations>()
+          .HasOne(p => p.ControlAccountInformations)
+          .WithMany(q => q.HeadAccountsInformations)
+          .HasForeignKey(r => r.ControlAccountId);
+
+            modelBuilder.Entity<HeadAccountsInformations>()
+                .HasData(new HeadAccountsInformations
+                {
+                    Id = 1,
+                    HeadAccountTitle = "Current Assets",
+                    ControlAccountId = 1,
+                    Code = 1001,
+                    CreatedBy = 1,
+                    CreatedDate = System.DateTime.Now,
+                    IsActive = true,
+                });
+
+            modelBuilder.Entity<AccountsInformation>()
+           .HasOne(p => p.UserInformation)
+           .WithMany(q => q.AccountsInformation)
+           .HasForeignKey(r => r.CreatedBy);
+
+            modelBuilder.Entity<AccountsInformation>()
+          .HasOne(p => p.HeadAccountsInformations)
+          .WithMany(q => q.AccountsInformations)
+          .HasForeignKey(r => r.HeadAccountId);
+
+            modelBuilder.Entity<AccountsInformation>()
+                .HasData(new AccountsInformation
+                {
+                    Id = 1,
+                    AccountTitle = "Petty cash",
+                    HeadAccountId = 1,
+                    Code = 10001,
+                    CreatedBy = 1,
+                    CreatedDate = System.DateTime.Now,
+                    IsActive = true,
+                });
+
+            modelBuilder.Entity<TransictionInformations>()
+          .HasOne(p => p.UserInformation)
+          .WithMany(q => q.TransictionInformations)
+          .HasForeignKey(r => r.CreatedBy);
+
+            modelBuilder.Entity<TransictionInformations>()
+          .HasOne(p => p.AccountsInformation)
+          .WithMany(q => q.TransictionInformations)
+          .HasForeignKey(r => r.AccountId);
+
+            modelBuilder.Entity<TransictionInformations>()
+                .HasData(new TransictionInformations
+                {
+                    Id = 1,
+                    AccountId = 2,
+                    Dr = 5000,
+                    Cr = 0,
+                    ForDate = System.DateTime.Now,
+                    CreatedBy = 1,
+                    CreatedDate = System.DateTime.Now,
+                    IsActive = true,
+                    Description = "Owner invest as a cash",
+                    TransictionIdentity = 1245654284
+                },
+                         new TransictionInformations {
+
+                    Id = 2,
+                    AccountId = 1020,
+                    Dr = 0,
+                    Cr = 5000,
+                    ForDate = System.DateTime.Now,
+                    CreatedBy = 1,         
+                    CreatedDate = System.DateTime.Now,
+                    IsActive = true,
+                    Description = "Owner invest as a cash",
+                    TransictionIdentity = 1245654284
+                });
 
         }
     }

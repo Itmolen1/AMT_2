@@ -1,0 +1,74 @@
+﻿@model IEnumerable<WebApplication1.Models.TransictionInformations>
+
+@{
+    ViewData["Title"] = "Transiction";
+}
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text text-info">Informations</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-append">
+                            <a asp-controller="Transiction" asp-action="Create" class="btn btn-info" title="Add New Transiction">
+                                <i class="fas fa-plus"></i> Add New
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap" id="example1">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Effective Date</th>
+                            <th>Code</th>
+                            <th>Account</th>
+                            <th>Dr</th>
+                            <th>Cr</th>
+                            <th>Create By</th>
+                            <th>Created Date</th>
+                            <th>Description</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.ForDate.ToString("dd-MMM-yyyy")</td>
+                                <td>@(item.AccountsInformation == null ? "Unknown" : item.AccountsInformation.Code.ToString())</td>
+                                <td>@(item.AccountsInformation == null ? "Unknown" : item.AccountsInformation.AccountTitle)</td>
+                                <td>@item.Dr</td>
+                                <td>@item.Cr</td>
+                                <td>@(item.UserInformation == null ? "Unknown" : item.UserInformation.FullName)</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.Description</td> 
+                                <td>
+                                    @Html.ActionLink("Journal", "Journal", new { Id = item.TransictionIdentity }, new { title="View Transiction Journal"}) 
+                                    @*//@Html.ActionLink("Revert", "Revert", new { Id = item.Id })*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->
+
+
+@section scripts{
+    <script src="~/js/CustomeDataTable.js"></script>
+}
+

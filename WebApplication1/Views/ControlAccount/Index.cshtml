@@ -1,0 +1,71 @@
+﻿@model List<WebApplication1.Models.ControlAccountInformations>
+
+@{
+    ViewData["Title"] = "Control Account";
+}
+
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text text-info">Control Account Informations</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-append">
+                            @{
+                                var Count = Model.Count;
+
+                                if (Count < 5)
+                                {
+                                    <a asp-controller="ControlAccount" asp-action="Create" class="btn btn-info">
+                                        <i class="fas fa-plus"></i> Add New
+                                    </a>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap" id="example1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Code</th>
+                            <th>Account Title</th>
+                            <th>Create By</th>
+                            <th>Created Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Code</td>
+                                <td>@item.ControlAccountName</td>
+                                <td>@item.UserInformation.FullName</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.IsActive</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6">
+                                <small class="text text-danger">Note: This Accounts cant be change</small>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->

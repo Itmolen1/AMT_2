@@ -1,4 +1,5 @@
-﻿@model WebApplication1.Models.ProductInfo
+﻿@model WebApplication1.Models.EmployeeInformations
+
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,7 +13,7 @@
             <div class="col-md-8 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title text text-blue">Details</h3>
+                        <h3 class="card-title text text-blue">Employee Delete</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -21,28 +22,24 @@
                                 @if (Model != null)
                                 {
                                     <tr>
-                                        <td>ID</td>
-                                        <td>@Model.Id</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Name</td>
+                                        <td>Company Name</td>
                                         <td>@Model.Name</td>
                                     </tr>
                                     <tr>
-                                        <td>Unit</td>
-                                        <td>@(Model.UnitInformations == null ? "Unknown" : Model.UnitInformations.Name) </td>
+                                        <td>Department</td>
+                                        <td>@(Model.DesignationInformations == null ? "Unknown" : Model.DesignationInformations.Name) </td>
                                     </tr>
                                     <tr>
-                                        <td>Description</td>
-                                        <td>@Model.Description</td>
+                                        <td>Designation</td>
+                                        <td>@(Model.DesignationInformations == null ? "Unknown" : Model.DesignationInformations.Name) </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contact</td>
+                                        <td>@Model.MobileNumber</td>
                                     </tr>
                                     <tr>
                                         <td>Created By</td>
                                         <td>@(Model.UserInformation == null ? "Unknown" : Model.UserInformation.FullName)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>On Date</td>
-                                        <td>@Model.CreatedDate</td>
                                     </tr>
                                     <tr>
                                         <td>Status</td>
@@ -66,6 +63,19 @@
                                 }
                             </tbody>
                         </table>
+                        @if (Model != null)
+                        {
+                            <h3>Are you sure you want to delete this?</h3>
+                            <hr />
+                            <form asp-action="Delete">
+                                <input asp-for="Id" type="hidden" />
+                                <input type="submit" value="Delete" class="btn btn-success" /> |  <a asp-action="Index" class="btn btn-danger">Cancel</a>
+                            </form>
+                        }
+                        else
+                        {
+                            <a asp-action="Index" class="btn btn-info mt-2">Back to Employee list</a>
+                        }
                     </div>
                 </div>
             </div>
@@ -76,11 +86,3 @@
     </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-
-@if (Model != null)
-{
-    <div>
-        @Html.ActionLink("Edit", "Edit", new { Id = Model.Id }) |
-        <a asp-action="Index">Back to List</a>
-    </div>
-}

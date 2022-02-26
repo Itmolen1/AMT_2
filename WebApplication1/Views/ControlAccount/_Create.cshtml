@@ -1,4 +1,4 @@
-﻿@model WebApplication1.Models.ProductInfo
+﻿@model WebApplication1.Models.ControlAccountInformations
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,13 +12,13 @@
                 <!-- jquery validation -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        @if (Model != null && Model.Name != null)
+                        @if (Model != null && Model.ControlAccountName != null)
                         {
-                            <h3 class="card-title">Update Product</h3>
+                        <h3 class="card-title">Update</h3>
                         }
                         else
                         {
-                            <h3 class="card-title">Create New Product</h3>
+                            <h3 class="card-title">Create New</h3>
                         }
                     </div>
                     <!-- /.card-header -->
@@ -32,38 +32,24 @@
                                 <input asp-for="CreatedDate" type="hidden" />
                                 <input asp-for="IsActive" type="hidden" />
                                 <div class="col-lg-2 col-sm-6">
-                                    <label asp-for="Name">Product Name</label>
+                                    <label asp-for="ControlAccountName">Account Title</label>
                                 </div>
                                 <div class="col-lg-10 col-sm-6">
-                                    <input type="text" name="Name" asp-for="Name" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Product Name">
-                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                    <input type="text" name="ControlAccountName" asp-for="ControlAccountName" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Account Title">
+                                    <span asp-validation-for="ControlAccountName" class="text-danger"></span>
                                 </div>
-
-                                <div class="col-lg-2 col-sm-6 mt-1">
-                                    <label asp-for="Name">Product Unit</label>
+                                <div class="col-lg-2 col-sm-6">
+                                    <label asp-for="ControlAccountName">Account Code</label>
                                 </div>
                                 <div class="col-lg-10 col-sm-6 mt-1">
-                                        <select class="custom-select rounded-0" id="UnitId" name="UnitId" asp-for="UnitId">
-                                            @foreach (var unit in ViewBag.unitInformations)
-                                            {
-                                                <option value="@unit.Id">@unit.Name</option>
-                                            }
-                                        </select>
-                                    <span asp-validation-for="UnitId" class="text-danger"></span>
-                                </div>
-                                <div class="col-lg-2 col-sm-6 mt-1">
-                                    <label asp-for="Description">Product Description</label>
-                                </div>
-
-                                <div class="col-lg-10 col-sm-6 mt-1">
-                                    <textarea name="Description" asp-for="Description" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Product Description"></textarea>
-                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                    <input type="number" name="Code" asp-for="Code" autocomplete="off" class="form-control text-capitalize">
+                                    <span asp-validation-for="Code" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <input type="submit" value="Submit" class="btn btn-success" /> | 
+                            <input type="submit" value="Submit" class="btn btn-success" /> |
                             <a asp-action="Index">Back to List</a>
                         </div>
                     </form>
@@ -79,4 +65,5 @@
         <!-- /.row -->
     </div><!-- /.container-fluid -->
 </section>
+
 

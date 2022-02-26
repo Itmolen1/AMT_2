@@ -42,6 +42,10 @@ namespace WebApplication1
             services.AddScoped<IVehicleTypeRepository, MockVehicleTypeRepository>();
             services.AddScoped<IVehicleRepository, MockVehicleRepository>();
             services.AddScoped<IHomeRepository, MockHomeRepository>();
+            services.AddScoped<IControlAccountRepository, MockControlAccountRepository>();
+            services.AddScoped<IHeadAccountRepository, MockHeadAccountRepository>();
+            services.AddScoped<IAccountRepository, MockAccountRepository>();
+            services.AddScoped<ITransictionRepository, MockTransictionInformations>();
            
             services.Configure<CookiePolicyOptions>(options =>
             {

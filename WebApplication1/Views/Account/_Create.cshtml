@@ -1,0 +1,109 @@
+﻿@model WebApplication1.Models.AccountsInformation
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        @if (Model != null && Model.AccountTitle != null)
+                        {
+                            <h3 class="card-title">Update</h3>
+                        }
+                        else
+                        {
+                            <h3 class="card-title">Create New</h3>
+                        }
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <input asp-for="Id" type="hidden" />
+                                <input asp-for="CreatedBy" type="hidden" />
+                                <input asp-for="CreatedDate" type="hidden" />
+                                <input asp-for="IsActive" type="hidden" />
+
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="HeadAccountId">Head Account</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <select class="custom-select rounded-0" id="HeadAccountId" name="HeadAccountId" asp-for="HeadAccountId">
+                                        @foreach (var headAccount in ViewBag.GetHeadAccounts)
+                                        {
+                                            <option value="@headAccount.Id">@headAccount.HeadAccountTitle</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="HeadAccountId" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="AccountTitle">AccountTitle</label>
+                                </div>
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input type="text" name="AccountTitle" asp-for="AccountTitle" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Account Title">
+                                    <span asp-validation-for="AccountTitle" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-2 col-sm-6 mt-1">
+                                    <label asp-for="Code">Account Code</label>
+                                </div>
+
+                                <div class="col-lg-10 col-sm-6 mt-1">
+                                    <input name="Code" asp-for="Code" id="Code" readonly="readonly" autocomplete="off" class="form-control text-capitalize" placeholder="Enter Account Code" />
+                                    <span asp-validation-for="Code" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <input type="submit" value="Submit" class="btn btn-success" /> |
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#HeadAccountId").on("change", function () {
+                $.ajax({
+                    url: "/Account/GetAccountCode",
+                    type: "POST",
+                    data: { HeadAccountId: $("#HeadAccountId").val() },
+                    traditional: true,
+                    success: function (result) {
+                        $("#Code").val(result);
+                        console.log(result);
+                    },
+                    error: function () {
+                        alert("Something went wrong");
+                    }
+                });
+            });
+        });
+
+        $(document).on("contextmenu", function (e) {
+            e.preventDefault();
+        });
+    </script>
+}
+

@@ -1,0 +1,70 @@
+﻿@model List<WebApplication1.Models.TransictionInformations>
+
+@{
+    ViewData["Title"] = "Transiction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text text-info align-content-center">General Journal</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-append">
+                            @*<a asp-controller="Transiction" asp-action="Create" class="btn btn-info">
+                                    <i class="fas fa-plus"></i> Add New
+                                </a>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap table-bordered" id="example1">
+
+                    <tbody>
+                        <tr>
+                            <th>Date</th>
+                            <th>Particular</th>
+                            <th>Debit</th>
+                            <th>Credit</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td><a href="/Transiction/Journal/@item.TransictionIdentity" style="color:black" title="View Journal for this single transiction">@item.ForDate.ToString("dd-MMM-yyyy")</a></td>
+                            <td>@(item.AccountsInformation == null ? "Unknown" : item.AccountsInformation.Code.ToString()) @item.AccountsInformation.AccountTitle</td>
+                            @if (item.Dr > 0)
+                            {
+                                <td>@item.Dr</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            @if (item.Cr > 0)
+                            {
+                                <td>@item.Cr</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->
+<a asp-action="Index">Back to List</a>

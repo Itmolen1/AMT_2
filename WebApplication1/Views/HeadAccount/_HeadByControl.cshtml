@@ -1,0 +1,74 @@
+﻿@model List<WebApplication1.Models.HeadAccountsInformations>
+
+
+@{
+    ViewData["Title"] = "Head Account";
+}
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text text-info">Control Account / HeadAccounts </h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-append">
+                            <a asp-controller="HeadAccount" asp-action="Create" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Add New
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap" id="example1">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Account Title</th>
+                            <th>Create By</th>
+                            <th>Created Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr class="text text-info">
+                            @{
+                                var model = Model.Count();
+                                if (model > 0)
+                                {
+                                    <th>
+                                        @Model[0].ControlAccountInformations.Code
+                                    </th>
+                                    <th colspan="6">
+                                        @Model[0].ControlAccountInformations.ControlAccountName
+                                    </th>   
+                                }
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@item.Code</td>
+                            <td>@item.HeadAccountTitle</td>
+                            <td>@item.UserInformation.FullName</td>
+                            <td>@item.CreatedDate</td>
+                            <td>@item.IsActive</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { Id = item.Id }) 
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->

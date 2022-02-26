@@ -30,9 +30,20 @@ namespace WebApplication1.Repository
             return employess;
         }
 
-        public Task<EmployeeInformations> Delete(int Id)
+        public async Task<EmployeeInformations> Delete(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var employee = await _context.EmployeeInformations.FirstOrDefaultAsync(x => x.Id == Id);
+                _context.Remove(employee);
+                await _context.SaveChangesAsync();
+
+                return employee;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<EmployeeInformations> GetById(int Id)
