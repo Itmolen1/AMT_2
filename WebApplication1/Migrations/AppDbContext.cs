@@ -28,6 +28,8 @@ namespace WebApplication1
         public DbSet<HeadAccountsInformations> HeadAccountsInformations { get; set; }
         public DbSet<AccountsInformation> AccountsInformations { get; set; }
         public DbSet<TransictionInformations> TransictionInformations { get; set; }
+        public DbSet<QuotationInformation> QuotationInformation { get; set; }
+        public DbSet<QuotationDetails> QuotationDetails { get; set; }
               
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

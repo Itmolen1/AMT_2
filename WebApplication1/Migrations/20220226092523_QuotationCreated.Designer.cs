@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1;
 
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220226092523_QuotationCreated")]
+    partial class QuotationCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +50,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("AccountsInformations");
 
                     b.HasData(
-                        new { Id = 1, AccountTitle = "Petty cash", Code = 10001, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 505, DateTimeKind.Local), HeadAccountId = 1, IsActive = true }
+                        new { Id = 1, AccountTitle = "Petty cash", Code = 10001, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 285, DateTimeKind.Local), HeadAccountId = 1, IsActive = true }
                     );
                 });
 
@@ -75,7 +77,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("BloodGroupInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 452, DateTimeKind.Local), IsActive = true, Name = "A+" }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 248, DateTimeKind.Local), IsActive = true, Name = "A+" }
                     );
                 });
 
@@ -104,7 +106,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("ControlAccountInformations");
 
                     b.HasData(
-                        new { Id = 1, Code = 1001, ControlAccountName = "ASSETS", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 491, DateTimeKind.Local), IsActive = true }
+                        new { Id = 1, Code = 1001, ControlAccountName = "ASSETS", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 270, DateTimeKind.Local), IsActive = true }
                     );
                 });
 
@@ -153,7 +155,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("CustomerInformations");
 
                     b.HasData(
-                        new { Id = 1, Address = "nest 18, street k5 Allon", Area = "Mufraq", CompanyName = "Test Name", ContactPersonName = "Seed Name", Country = "UAE", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 446, DateTimeKind.Local), Description = "this is test description from seed", Email = "this@test.com", IsActive = true, LandLine = "34564613564", MobileNumber = "121313454112", State = "Abu Dhabi", TRNNumber = "123456789123456" }
+                        new { Id = 1, Address = "nest 18, street k5 Allon", Area = "Mufraq", CompanyName = "Test Name", ContactPersonName = "Seed Name", Country = "UAE", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 243, DateTimeKind.Local), Description = "this is test description from seed", Email = "this@test.com", IsActive = true, LandLine = "34564613564", MobileNumber = "121313454112", State = "Abu Dhabi", TRNNumber = "123456789123456" }
                     );
                 });
 
@@ -180,7 +182,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("DepartmentInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 407, DateTimeKind.Local), IsActive = true, Name = "Accounting" }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 209, DateTimeKind.Local), IsActive = true, Name = "Accounting" }
                     );
                 });
 
@@ -207,7 +209,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("DesignationInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 423, DateTimeKind.Local), IsActive = true, Name = "Driver" }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 223, DateTimeKind.Local), IsActive = true, Name = "Driver" }
                     );
                 });
 
@@ -278,7 +280,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("EmployeeInformations");
 
                     b.HasData(
-                        new { Id = 1, Address = "jos 10 faren street s6, no 1099", Age = 25, BloodGroupId = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 462, DateTimeKind.Local), DateofBirth = new DateTime(2022, 2, 26, 13, 59, 28, 462, DateTimeKind.Local), DepartmentId = 1, Description = "this is test Employee From Seed", DesignationId = 1, DrivingLicienceExpiry = new DateTime(2022, 2, 26, 13, 59, 28, 463, DateTimeKind.Local), EmailAddress = "test@gmail.com", EmergencyContactNumber = "64648464412", GenderId = 1, HireDate = new DateTime(2022, 2, 26, 13, 59, 28, 462, DateTimeKind.Local), IdCardExpiry = new DateTime(2022, 2, 26, 13, 59, 28, 462, DateTimeKind.Local), ImageUrl = "jas.jpg", IsActive = true, MobileNumber = "1231464612", Name = "Test Name", PassportExpiry = new DateTime(2022, 2, 26, 13, 59, 28, 463, DateTimeKind.Local), VisaExpiry = new DateTime(2022, 2, 26, 13, 59, 28, 463, DateTimeKind.Local) }
+                        new { Id = 1, Address = "jos 10 faren street s6, no 1099", Age = 25, BloodGroupId = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 259, DateTimeKind.Local), DateofBirth = new DateTime(2022, 2, 26, 13, 25, 22, 259, DateTimeKind.Local), DepartmentId = 1, Description = "this is test Employee From Seed", DesignationId = 1, DrivingLicienceExpiry = new DateTime(2022, 2, 26, 13, 25, 22, 260, DateTimeKind.Local), EmailAddress = "test@gmail.com", EmergencyContactNumber = "64648464412", GenderId = 1, HireDate = new DateTime(2022, 2, 26, 13, 25, 22, 260, DateTimeKind.Local), IdCardExpiry = new DateTime(2022, 2, 26, 13, 25, 22, 260, DateTimeKind.Local), ImageUrl = "jas.jpg", IsActive = true, MobileNumber = "1231464612", Name = "Test Name", PassportExpiry = new DateTime(2022, 2, 26, 13, 25, 22, 260, DateTimeKind.Local), VisaExpiry = new DateTime(2022, 2, 26, 13, 25, 22, 260, DateTimeKind.Local) }
                     );
                 });
 
@@ -329,7 +331,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("HeadAccountsInformations");
 
                     b.HasData(
-                        new { Id = 1, Code = 1001, ControlAccountId = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 499, DateTimeKind.Local), HeadAccountTitle = "Current Assets", IsActive = true }
+                        new { Id = 1, Code = 1001, ControlAccountId = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 278, DateTimeKind.Local), HeadAccountTitle = "Current Assets", IsActive = true }
                     );
                 });
 
@@ -363,47 +365,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("ProductInfos");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 432, DateTimeKind.Local), Description = "this is from seed,for test purpose", IsActive = true, Name = "Letter", UnitId = 1 }
-                    );
-                });
-
-            modelBuilder.Entity("WebApplication1.Models.QuotationDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(200);
-
-                    b.Property<int>("ItemId");
-
-                    b.Property<int>("Quantity");
-
-                    b.Property<int>("QuotationId");
-
-                    b.Property<float?>("SubTotal");
-
-                    b.Property<float?>("Total");
-
-                    b.Property<int>("UnitId");
-
-                    b.Property<float?>("UnitPrice");
-
-                    b.Property<float?>("VAT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("QuotationId");
-
-                    b.HasIndex("UnitId");
-
-                    b.ToTable("QuotationDetails");
-
-                    b.HasData(
-                        new { Id = 1, Description = "this one item from seed", ItemId = 1, Quantity = 5, QuotationId = 1, SubTotal = 105f, Total = 100f, UnitId = 1, UnitPrice = 20f, VAT = 5f }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 231, DateTimeKind.Local), Description = "this is from seed,for test purpose", IsActive = true, Name = "Letter", UnitId = 1 }
                     );
                 });
 
@@ -452,7 +414,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("QuotationInformation");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 523, DateTimeKind.Local), CustomerId = 1, CustomerNote = "This is test from seed", DueDate = new DateTime(2022, 2, 26, 13, 59, 28, 522, DateTimeKind.Local), FromDate = new DateTime(2022, 2, 26, 13, 59, 28, 522, DateTimeKind.Local), GrandTotalAmount = 105f, ISConverted = false, IsActive = true, IsNeedSignature = false, QuotationNumber = 1232154545, TermCondition = "This is Term Condition from seed", TotalAmount = 100f, VAT = 5f }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 303, DateTimeKind.Local), CustomerId = 1, CustomerNote = "This is test from seed", DueDate = new DateTime(2022, 2, 26, 13, 25, 22, 302, DateTimeKind.Local), FromDate = new DateTime(2022, 2, 26, 13, 25, 22, 302, DateTimeKind.Local), GrandTotalAmount = 105f, ISConverted = false, IsActive = true, IsNeedSignature = false, QuotationNumber = 1232154545, TermCondition = "This is Term Condition from seed", TotalAmount = 100f, VAT = 5f }
                     );
                 });
 
@@ -481,7 +443,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("TrackUpdateInformations");
 
                     b.HasData(
-                        new { Id = 1, AfterUpdate = "Driver Name", BeforeUpdate = "Driver", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 467, DateTimeKind.Local), IsActive = true, UpdateInfo = "Driver Update to Driver Name" }
+                        new { Id = 1, AfterUpdate = "Driver Name", BeforeUpdate = "Driver", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 265, DateTimeKind.Local), IsActive = true, UpdateInfo = "Driver Update to Driver Name" }
                     );
                 });
 
@@ -520,8 +482,8 @@ namespace WebApplication1.Migrations
                     b.ToTable("TransictionInformations");
 
                     b.HasData(
-                        new { Id = 1, AccountId = 2, Cr = 0f, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 514, DateTimeKind.Local), Description = "Owner invest as a cash", Dr = 5000f, ForDate = new DateTime(2022, 2, 26, 13, 59, 28, 514, DateTimeKind.Local), IsActive = true, TransictionIdentity = 1245654284 },
-                        new { Id = 2, AccountId = 1020, Cr = 5000f, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 514, DateTimeKind.Local), Description = "Owner invest as a cash", Dr = 0f, ForDate = new DateTime(2022, 2, 26, 13, 59, 28, 514, DateTimeKind.Local), IsActive = true, TransictionIdentity = 1245654284 }
+                        new { Id = 1, AccountId = 2, Cr = 0f, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 294, DateTimeKind.Local), Description = "Owner invest as a cash", Dr = 5000f, ForDate = new DateTime(2022, 2, 26, 13, 25, 22, 294, DateTimeKind.Local), IsActive = true, TransictionIdentity = 1245654284 },
+                        new { Id = 2, AccountId = 1020, Cr = 5000f, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 294, DateTimeKind.Local), Description = "Owner invest as a cash", Dr = 0f, ForDate = new DateTime(2022, 2, 26, 13, 25, 22, 294, DateTimeKind.Local), IsActive = true, TransictionIdentity = 1245654284 }
                     );
                 });
 
@@ -548,7 +510,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("UnitInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 427, DateTimeKind.Local), IsActive = true, Name = "Letter" }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 226, DateTimeKind.Local), IsActive = true, Name = "Letter" }
                     );
                 });
 
@@ -585,7 +547,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("UserInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 407, DateTimeKind.Local), FullName = "Admin", GenderId = 1, IsActive = true, UserName = "admin@gmail.com", UserPassword = "12345678" }
+                        new { Id = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 208, DateTimeKind.Local), FullName = "Admin", GenderId = 1, IsActive = true, UserName = "admin@gmail.com", UserPassword = "12345678" }
                     );
                 });
 
@@ -633,7 +595,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("VehicleInformation");
 
                     b.HasData(
-                        new { Id = 1, Brand = "Toyota", Color = "Red", Comments = "this from seed for test", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 421, DateTimeKind.Local), InsuranceExpiry = new DateTime(2022, 2, 26, 13, 59, 28, 422, DateTimeKind.Local), IsActive = true, Model = "2008", MulkiyaExpiry = new DateTime(2022, 2, 26, 13, 59, 28, 422, DateTimeKind.Local), PlateNumber = "2005", RegisterdRegion = "Abu Dhabi", TCNumber = "13131", VehicleTypeId = 1 }
+                        new { Id = 1, Brand = "Toyota", Color = "Red", Comments = "this from seed for test", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 222, DateTimeKind.Local), InsuranceExpiry = new DateTime(2022, 2, 26, 13, 25, 22, 223, DateTimeKind.Local), IsActive = true, Model = "2008", MulkiyaExpiry = new DateTime(2022, 2, 26, 13, 25, 22, 223, DateTimeKind.Local), PlateNumber = "2005", RegisterdRegion = "Abu Dhabi", TCNumber = "13131", VehicleTypeId = 1 }
                     );
                 });
 
@@ -660,7 +622,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("VehicleTypeInformations");
 
                     b.HasData(
-                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 452, DateTimeKind.Local), IsActive = true, TypeName = "Heavy Vehicle" }
+                        new { Id = 1, CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 249, DateTimeKind.Local), IsActive = true, TypeName = "Heavy Vehicle" }
                     );
                 });
 
@@ -709,7 +671,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("VenderInformations");
 
                     b.HasData(
-                        new { Id = 1, Address = "nest 18, street k5 Allon", Area = "Mufraq", CompanyName = "Test Vender", ContactPersonName = "Seed Vender", Country = "UAE", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 59, 28, 451, DateTimeKind.Local), Description = "this is test description from seed", Email = "this@test.com", IsActive = true, LandLine = "34564613564", MobileNumber = "121313454112", State = "Abu Dhabi", TRNNumber = "123456789123456" }
+                        new { Id = 1, Address = "nest 18, street k5 Allon", Area = "Mufraq", CompanyName = "Test Vender", ContactPersonName = "Seed Vender", Country = "UAE", CreatedBy = 1, CreatedDate = new DateTime(2022, 2, 26, 13, 25, 22, 248, DateTimeKind.Local), Description = "this is test description from seed", Email = "this@test.com", IsActive = true, LandLine = "34564613564", MobileNumber = "121313454112", State = "Abu Dhabi", TRNNumber = "123456789123456" }
                     );
                 });
 
@@ -816,24 +778,6 @@ namespace WebApplication1.Migrations
 
                     b.HasOne("WebApplication1.Models.UnitInformations", "UnitInformations")
                         .WithMany("ProductInfos")
-                        .HasForeignKey("UnitId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("WebApplication1.Models.QuotationDetails", b =>
-                {
-                    b.HasOne("WebApplication1.Models.ProductInfo", "ProductInfo")
-                        .WithMany("QuotationDetails")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WebApplication1.Models.QuotationInformation", "QuotationInformation")
-                        .WithMany("QuotationDetails")
-                        .HasForeignKey("QuotationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("WebApplication1.Models.UnitInformations", "UnitInformations")
-                        .WithMany("QuotationDetails")
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -364,19 +364,80 @@ namespace WebApplication1.ModelBinders
                     Description = "Owner invest as a cash",
                     TransictionIdentity = 1245654284
                 },
-                         new TransictionInformations {
+                         new TransictionInformations
+                         {
 
-                    Id = 2,
-                    AccountId = 1020,
-                    Dr = 0,
-                    Cr = 5000,
-                    ForDate = System.DateTime.Now,
-                    CreatedBy = 1,         
+                             Id = 2,
+                             AccountId = 1020,
+                             Dr = 0,
+                             Cr = 5000,
+                             ForDate = System.DateTime.Now,
+                             CreatedBy = 1,
+                             CreatedDate = System.DateTime.Now,
+                             IsActive = true,
+                             Description = "Owner invest as a cash",
+                             TransictionIdentity = 1245654284
+                         });
+
+            modelBuilder.Entity<QuotationInformation>()
+          .HasOne(p => p.UserInformation)
+          .WithMany(q => q.QuotationInformation)
+          .HasForeignKey(r => r.CreatedBy);
+
+            modelBuilder.Entity<QuotationInformation>()
+          .HasOne(p => p.CustomerInformations)
+          .WithMany(q => q.QuotationInformation)
+          .HasForeignKey(r => r.CustomerId);
+
+            modelBuilder.Entity<QuotationInformation>()
+                .HasData(new QuotationInformation
+                {
+                    Id = 1,
+                    CustomerId = 1,
+                    TotalAmount = 100,
+                    VAT = 5,
+                    GrandTotalAmount = 105,
+                    FromDate = System.DateTime.Now,
+                    DueDate = System.DateTime.Now,
+                    CustomerNote = "This is test from seed",
+                    TermCondition = "This is Term Condition from seed",
+                    QuotationNumber = 1232154545,
+                    ISConverted = false,
+                    IsNeedSignature = false,
+                    CreatedBy = 1,
                     CreatedDate = System.DateTime.Now,
-                    IsActive = true,
-                    Description = "Owner invest as a cash",
-                    TransictionIdentity = 1245654284
+                    IsActive = true
                 });
+
+            modelBuilder.Entity<QuotationDetails>()
+          .HasOne(p => p.QuotationInformation)
+          .WithMany(q => q.QuotationDetails)
+          .HasForeignKey(r => r.QuotationId);
+
+            modelBuilder.Entity<QuotationDetails>()
+          .HasOne(p => p.ProductInfo)
+          .WithMany(q => q.QuotationDetails)
+          .HasForeignKey(r => r.ItemId);
+
+            modelBuilder.Entity<QuotationDetails>()
+         .HasOne(p => p.UnitInformations)
+         .WithMany(q => q.QuotationDetails)
+         .HasForeignKey(r => r.UnitId);
+
+            modelBuilder.Entity<QuotationDetails>()
+         .HasData(new QuotationDetails()
+         {
+             Id = 1,
+             QuotationId = 1,
+             ItemId = 1,
+             UnitId = 1,
+             Description = "this one item from seed",
+             Quantity = 5,
+             UnitPrice = 20,
+             Total = 100,
+             VAT = 5,
+             SubTotal = 105
+         });
 
         }
     }

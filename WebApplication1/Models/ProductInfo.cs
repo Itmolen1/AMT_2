@@ -24,5 +24,6 @@ namespace WebApplication1.Models
 
         public UserInformation UserInformation { get; set; }
         public UnitInformations UnitInformations { get; set; }
+        public List<QuotationDetails> QuotationDetails { get; set; }
     }
 }

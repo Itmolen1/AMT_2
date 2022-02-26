@@ -21,5 +21,6 @@ namespace WebApplication1.Models
 
         public UserInformation UserInformation { get; set; }
         public List<ProductInfo> ProductInfos { get; set; }
+        public List<QuotationDetails> QuotationDetails { get; set; }
     }
 }

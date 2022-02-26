@@ -45,6 +45,7 @@ namespace WebApplication1.Models
         public List<HeadAccountsInformations> HeadAccountsInformations { get; set; }
         public List<AccountsInformation> AccountsInformation { get; set; }
         public List<TransictionInformations> TransictionInformations { get; set; }
+        public List<QuotationInformation> QuotationInformation { get; set; }
         
     }
 }
