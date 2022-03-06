@@ -13,13 +13,15 @@ namespace WebApplication1.Controllers
         private readonly IExpenseRepository _expenseRepository;
         private readonly IProductRepository _productRepository;
         private readonly IVenderRepository _venderRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
         public ExpenseController(IExpenseRepository expenseRepository, IProductRepository productRepository,
-            IVenderRepository venderRepository)
+            IVenderRepository venderRepository, IEmployeeRepository employeeRepository)
         {
             this._expenseRepository = expenseRepository;
             this._productRepository = productRepository;
             this._venderRepository = venderRepository;
+            this._employeeRepository = employeeRepository;
         }
 
         [HttpGet]
@@ -41,13 +43,15 @@ namespace WebApplication1.Controllers
         {
             try
             {
-               List<ExpenseDetailsInformations> expenseDetails = new List<ExpenseDetailsInformations>();
-                expenseDetails[0].ExpenseInformation.ExpenseNumber = 06032002;
+                ExpenseInformation expenseInformation = new ExpenseInformation();
+                expenseInformation.ExpenseNumber = 06032002;
 
-                 ViewBag.Products = await GetProducts();
-                 ViewBag.Venders = await GetVenders();
+                ViewBag.Products = await GetProducts();
+                ViewBag.Venders = await GetVenders();
+                ViewBag.employees = await GetEmployees();
+                expenseInformation.ExpenseDate = System.DateTime.Now;
 
-                return View(expenseDetails);
+                return PartialView("_Create",expenseInformation);
             }
             catch (Exception)
             {
@@ -60,7 +64,7 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                var  products =  await _productRepository.All();
+                var products = await _productRepository.All();
                 products.Insert(0, new ProductInfo() { Id = 0, Name = "Please select Product" });
                 return products;
             }
@@ -76,8 +80,23 @@ namespace WebApplication1.Controllers
             try
             {
                 var venders = await _venderRepository.All();
-                venders.Insert(0, new VenderInformations() { Id=0, CompanyName = "Please select Vender" });
+                venders.Insert(0, new VenderInformations() { Id = 0, CompanyName = "Please select Vender" });
                 return venders;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [NonAction]
+        public async Task<List<EmployeeInformations>> GetEmployees()
+        {
+            try
+            {
+                var employees = await _employeeRepository.All();
+                employees.Insert(0, new EmployeeInformations() { Id = 0, Name = "Please select employee" });
+                return employees;
             }
             catch (Exception)
             {

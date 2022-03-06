@@ -1,0 +1,173 @@
+﻿@model WebApplication1.Models.ExpenseInformation
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="invoice p-3 mb-3">
+    <!-- title row -->
+    <div class="row">
+        <div class="col-12">
+            <h4>
+                <i class="fas fa-globe"></i> Al Muzdalifa General Transport Est..
+            </h4>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+            Vender
+            <address>
+                <strong>
+                    <select asp-for="VenderId" name="VenderId" id="VenderId" class="custom-select rounded-0">
+                        @if (ViewBag.Venders != null)
+                        {
+                            foreach (var item in ViewBag.Venders)
+                            {
+                                <option value="@item.Id">@item.CompanyName</option>
+                            }
+                        }
+                        else
+                        {
+                            <option>Please Add vender First</option>
+                        }
+                    </select>
+                </strong>
+                <br>
+            </address>
+
+            Bill Number
+            <input type="text" class="form-control"/>
+        </div>
+        <div class="col-sm-4 invoice-col">
+            Expense Date
+            <address>
+                <strong>
+                    <input type="date" asp-for="ExpenseDate" class="form-control" />
+                </strong>
+            </address>
+            Expense #
+            <input readonly="readonly" type="text" asp-for="ExpenseNumber" class="form-control" />
+        </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+                <b></b><br>
+                <br>
+                <br><input type="hidden" asp-for="@Model.Id" id="Id">
+                <input type="hidden" asp-for="@Model.CreatedBy" id="Id">
+                <input type="hidden" asp-for="@Model.CreatedDate" id="Id">
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- Table row -->
+        <div class="row mt-2">
+            <div class="col-12 table-responsive-md">
+                <table class="table table-striped" id="orderdetailsitems">
+                    <thead class="bg bg-blue">
+                        <tr>
+                            <th>Category</th>
+                            <th>Category Details</th>
+                            <th>Description</th>
+                            <th>Subtotal</th>
+                            <th>VAT</th>
+                            <th>NetTotal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyGood">
+                        <tr id="mainrowgood">
+                            <td>
+                                <input type="hidden" value="Id" class="detailId" />
+                                <select asp-for="@Model.ExpenseDetailsInformations[0].Category" name="" id="Category" class="custom-select rounded-0 Category Category form-control">
+                                    <option value="0">Select Type</option>
+                                    <option value="General">General</option>
+                                    <option value="Employee">Employee</option>
+                                    <option value="Vehicle">Vehicle</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="hidden" value="Id" class="detailId" />
+                                <select name="ExpenseRefrenceId" id="ExpenseRefrenceId" class="custom-select rounded-0 ExpenseRefrenceId form-control" title="this is loading on the base of expense category">
+                                   <option value="0">Please select Details </option>
+                                </select>
+                            </td>
+                            <td><input id="Description" title="Description area" placeholder="Description" class="form-control Description" /></td>
+
+                            <td><input type="number" id="SubTotal" name="SubTotal" class="SubTotal rate form-control" /></td>
+                            <td>
+                                <select name="VAT" id="VAT" class="custom-select rounded-0 VAT vat">
+                                    <option value="0">0%</option>
+                                    <option value="5">5%</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input id="NetTotal" class="NetTotal form-control" value="AED:0.00" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <!-- accepted payments column -->
+            <div class="col-6">
+                <p class="lead">Special Note:</p>
+                <textarea asp-for="@Model.SpecialNote" id="SpecialNote" name="SpecialNote" class="form-control text-sm" placeholder="Special Note"></textarea>
+            </div>
+            <!-- /.col -->
+            <div class="col-6">
+                <p class="lead">Amount in AED:</p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>Payment Type:</th>
+                            <td>
+                                <select name="ExpenseRefrenceId" id="ExpenseRefrenceId" class="custom-select rounded-0 product ExpenseRefrenceId form-control" title="this is loading on the base of expense category">
+                                    <option value="0">Please select Payment Type </option>
+                                    <option value="Cash">Cash </option>
+                                    <option value="Bank">Bank </option>
+                                    <option value="Credit">Loan </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Sub Total:</th>
+                            <td id="TotalAmount"><label id="SubTotal">@Model.TotalAmount</label></td>
+                        </tr>
+                        <tr>
+                            <th>VAT (5%)</th>
+                            <td id="VAT"><label id="TotalVAT">@Model.VAT</label></td>
+                        </tr>
+                        <tr>
+                            <th>Grand Total:</th>
+                            <td id="GrandTotalAmount"><label id="gtotal">@Model.GrandTotalAmount</label></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- this row will not appear when printing -->
+        <div class="row no-print">
+            <div class="col-12">
+                <a href="/Expense" type="button" class="btn btn-danger float-right">
+                    <i class="fas fa-times"></i>
+                    Cancel
+                </a>
+                <button type="button" id="SaveExpense" class="btn btn-success float-right" style="margin-right: 5px;">
+                    <i class="fas fa-save"></i> Save
+                    Expense
+                </button>
+            </div>
+        </div>
+    </div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section scripts{ 
+<script src="~/js/Expense.js"></script>
+}
