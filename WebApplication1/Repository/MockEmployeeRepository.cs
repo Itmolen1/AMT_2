@@ -50,7 +50,14 @@ namespace WebApplication1.Repository
         {
             try
             {
-                var employee = await _context.EmployeeInformations.FirstOrDefaultAsync(x => x.Id == Id);
+                var employee = await _context
+                        .EmployeeInformations
+                        .Include("UserInformation")
+                        .Include("BloodGroupInformations")
+                        .Include("DesignationInformations")
+                        .Include("DepartmentInformations")
+                        .Include("GenderInformations")
+                        .FirstOrDefaultAsync(x => x.Id == Id);
                 return employee;
             }
             catch (Exception)

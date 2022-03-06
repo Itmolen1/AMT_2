@@ -105,45 +105,45 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         @*<li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                    Dashboard
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="./index.html" class="nav-link active">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Dashboard v1</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./index2.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Dashboard v2</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Dashboard v3</p>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                    Widgets
-                    <span class="right badge badge-danger">New</span>
-                </p>
-            </a>
-        </li>*@
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Dashboard
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="./index.html" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Dashboard v1</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./index2.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Dashboard v2</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./index3.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Dashboard v3</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/widgets.html" class="nav-link">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Widgets
+                                        <span class="right badge badge-danger">New</span>
+                                    </p>
+                                </a>
+                            </li>*@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-paint-brush"></i>
@@ -371,7 +371,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="/Quotation/Create" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add New Quotation</p>
                                     </a>
@@ -456,7 +456,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-black"><a href="/@ViewContext.RouteData.Values["controller"].ToString()" style="color:black" title="Back to list" >@ViewContext.RouteData.Values["controller"].ToString()</a></h1>
+                            <h1 class="m-0 text-black"><a href="/@ViewContext.RouteData.Values["controller"].ToString()" style="color:black" title="Back to list">@ViewContext.RouteData.Values["controller"].ToString()</a></h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -475,13 +475,11 @@
             </main>
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2022 <a href="https://adminlte.io">Al Muzdalifa</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>@*Version*@</b>
-            </div>
-        </footer>
+        @if (ViewContext.RouteData.Values["action"].ToString().Substring(0, 4) != "Prin")
+        {
+            <partial name="~/Views/Shared/_FooterView.cshtml" />
+        }
+
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->

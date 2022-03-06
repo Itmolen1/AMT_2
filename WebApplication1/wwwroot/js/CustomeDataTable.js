@@ -17,6 +17,14 @@ $(function () {
 });
 
 $(function () {
+    $(".dataTables_length").css('margin-left', '20px');
+    $(".dataTables_info").css('margin-left', '20px').css('color', '#87CEEB');
+    $(".dataTables_length").css('margin-top', '10px');
+    $(".dataTables_filter").css('margin-right', '10px');
+    $(".dataTables_filter").css('margin-top', '10px');    
+});
+
+$(function () {
     $(document).ready(function () {
         // Run code
         $.ajax({

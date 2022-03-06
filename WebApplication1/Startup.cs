@@ -30,11 +30,11 @@ namespace WebApplication1
             services.AddDbContextPool<AppDbContext>(
                options => options.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
             services.AddScoped<IUserRepository, MockUserRepository>();
+            services.AddScoped<IBloodGroupRepository, MockBloodGroupRepository>();
             services.AddScoped<IEmployeeRepository, MockEmployeeRepository>();
             services.AddScoped<IDepartmentRepository, MockDepartmentRepository>();
             services.AddScoped<IDesignationRepository, MockDesignationRepository>();
             services.AddScoped<ITrackUpdateRepository, MockTrackUpdateRepository>();
-            services.AddScoped<IBloodGroupRepository, MockBloodGroupRepository>();
             services.AddScoped<IUnitRepository, MockUnitRepository>();
             services.AddScoped<IProductRepository, MockProductRepository>();
             services.AddScoped<ICustomerRepository, MockCustomerRepository>();
@@ -46,6 +46,7 @@ namespace WebApplication1
             services.AddScoped<IHeadAccountRepository, MockHeadAccountRepository>();
             services.AddScoped<IAccountRepository, MockAccountRepository>();
             services.AddScoped<ITransictionRepository, MockTransictionInformations>();
+            services.AddScoped<IQuotationRepository, MockQuotationRepository>();
            
             services.Configure<CookiePolicyOptions>(options =>
             {

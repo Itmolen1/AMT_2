@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebApplication1.Models.QuotationInformation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text text-info">Quotation Informations</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-append">
+                            <a asp-controller="Quotation" asp-action="Create" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Add New
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap" id="example1">
+                    <thead>
+                        <tr>
+                            <th>For Date</th>
+                            <th>Cusomer</th>
+                            <th>Quot #</th>
+                            <th>Total Amount</th>
+                            <th>Vat Amount</th>
+                            <th>Grand Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CreatedDate.ToString("dd-MMM-yyyy")</td>
+                                <td>@item.CustomerInformations.CompanyName</td>
+                                <td>@item.QuotationNumber</td>
+                                <td>@item.TotalAmount</td>
+                                <td>@item.VAT</td>
+                                <td>@item.GrandTotalAmount</td>
+
+                                @if (item.ISConverted == false)
+                                {
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { Id = item.Id }) |
+                                        @Html.ActionLink("Print", "PrintQuotation", new { Id = item.Id })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
+                                        @Html.ActionLink("Print", "PrintQuotation", new { Id = item.Id })|
+                                        <span class="text text-success" title="This quotation is already accepted can't Edit and Delete, You can only view Details and Print">Accepted</span>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->
+
+@section scripts{
+    <script src="~/js/CustomeDataTable.js"></script>
+}
+
+

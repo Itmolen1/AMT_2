@@ -24,7 +24,7 @@ namespace WebApplication1.Repository
             widgetsViewModel.TotalEmployee = await _context.EmployeeInformations.Where(x=>x.IsActive == true).CountAsync();
             widgetsViewModel.TotalVehicle = await _context.VehicleInformation.Where(x=>x.IsActive == true).CountAsync();
             widgetsViewModel.TotalInvoice = 10;
-            widgetsViewModel.TotalQuotaion = 15;
+            widgetsViewModel.TotalQuotaion = await _context.QuotationInformation.Where(x=>x.IsActive == true).CountAsync();
 
             return widgetsViewModel;
         }

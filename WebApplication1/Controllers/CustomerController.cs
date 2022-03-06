@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Interfaces;
 using WebApplication1.Models;
+using WebApplication1.Models.ViewModels;
 
 namespace WebApplication1.Controllers
 {
@@ -172,6 +173,30 @@ namespace WebApplication1.Controllers
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public async Task<CustomerViewModel> GetById(int Id)
+        {
+            try
+            { 
+                var Customer = await _customerRepository.GetById(Id);
+
+                CustomerViewModel customerObj = new CustomerViewModel
+                {
+                    Id = Customer.Id,
+                    CompanyName = Customer.CompanyName,
+                    ContactPerson = Customer.ContactPersonName,
+                    Mobile = Customer.MobileNumber,
+                    Address = Customer.Address,
+                    TRNNumber = Customer.TRNNumber
+                };
+                return customerObj  ;
+            }
+            catch (Exception)
+            {
                 throw;
             }
         }
