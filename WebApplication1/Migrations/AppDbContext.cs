@@ -30,6 +30,11 @@ namespace WebApplication1
         public DbSet<TransictionInformations> TransictionInformations { get; set; }
         public DbSet<QuotationInformation> QuotationInformation { get; set; }
         public DbSet<QuotationDetails> QuotationDetails { get; set; }
+        public DbSet<PaymentTypeInformations> PaymentTypes { get; set; }
+        public DbSet<ExpenseInformation> ExpenseInformations { get; set; }
+        public DbSet<ExpenseDetailsInformations> ExpenseDetailsInformations { get; set; }
+
+
               
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

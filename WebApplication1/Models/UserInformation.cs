@@ -46,6 +46,8 @@ namespace WebApplication1.Models
         public List<AccountsInformation> AccountsInformation { get; set; }
         public List<TransictionInformations> TransictionInformations { get; set; }
         public List<QuotationInformation> QuotationInformation { get; set; }
+        public List<PaymentTypeInformations> PaymentTypeInformations { get; set; }
+        public List<ExpenseInformation> ExpenseInformation { get; set; }
         
     }
 }

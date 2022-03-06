@@ -7,24 +7,19 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    public class ProductInfo
+    public class PaymentTypeInformations
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        [MaxLength(100, ErrorMessage = "Name cannot exceed 100 character")]
-        public string Name { get; set; }
+        [MaxLength(100, ErrorMessage = "Type Name cannot exceed 100 character")]
+        public string TypeName { get; set; }
         public int CreatedBy { get; set; }
-        public int UnitId { get; set; }
-        [MaxLength(500, ErrorMessage = "Description cannot exceed 500 character")]
-        public string Description { get; set; }
         public DateTime CreatedDate { get; set; } = System.DateTime.Now;
         public bool IsActive { get; set; } = true;
 
         public UserInformation UserInformation { get; set; }
-        public UnitInformations UnitInformations { get; set; }
-        public List<QuotationDetails> QuotationDetails { get; set; }
-        public List<ExpenseDetailsInformations> ExpenseDetailsInformations { get; set; }
+        public List<ExpenseInformation> ExpenseInformations { get; set; }
     }
 }

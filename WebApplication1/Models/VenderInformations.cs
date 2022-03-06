@@ -33,5 +33,6 @@ namespace WebApplication1.Models
         public bool IsActive { get; set; } = true;
 
         public UserInformation UserInformation { get; set; }
+        public List<ExpenseInformation> ExpenseInformations { get; set; }
     }
 }

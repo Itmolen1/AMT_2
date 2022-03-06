@@ -344,7 +344,7 @@ namespace WebApplication1.ModelBinders
           .HasOne(p => p.UserInformation)
           .WithMany(q => q.TransictionInformations)
           .HasForeignKey(r => r.CreatedBy);
-
+             
             modelBuilder.Entity<TransictionInformations>()
           .HasOne(p => p.AccountsInformation)
           .WithMany(q => q.TransictionInformations)
@@ -420,12 +420,12 @@ namespace WebApplication1.ModelBinders
           .HasForeignKey(r => r.ItemId);
 
             modelBuilder.Entity<QuotationDetails>()
-         .HasOne(p => p.UnitInformations)
-         .WithMany(q => q.QuotationDetails)
-         .HasForeignKey(r => r.UnitId);
+             .HasOne(p => p.UnitInformations)
+             .WithMany(q => q.QuotationDetails)
+             .HasForeignKey(r => r.UnitId);
 
             modelBuilder.Entity<QuotationDetails>()
-         .HasData(new QuotationDetails()
+          .HasData(new QuotationDetails()
          {
              Id = 1,
              QuotationId = 1,
@@ -438,6 +438,97 @@ namespace WebApplication1.ModelBinders
              VAT = 5,
              SubTotal = 105
          });
+
+            modelBuilder.Entity<PaymentTypeInformations>()
+            .HasOne(p => p.UserInformation)
+            .WithMany(q => q.PaymentTypeInformations)
+            .HasForeignKey(r => r.CreatedBy);
+
+            modelBuilder.Entity<PaymentTypeInformations>()
+                .HasData(new PaymentTypeInformations
+                {
+                    Id = 1,
+                    TypeName = "Cash",
+                    CreatedBy = 1,
+                    CreatedDate = System.DateTime.Now,
+                    IsActive = true,
+                });
+
+            modelBuilder.Entity<ExpenseInformation>()
+           .HasOne(p => p.UserInformation)
+           .WithMany(q => q.ExpenseInformation)
+           .HasForeignKey(r => r.CreatedBy);
+
+            modelBuilder.Entity<ExpenseInformation>()
+           .HasOne(p => p.PaymentTypeInformations)
+           .WithMany(q => q.ExpenseInformations)
+           .HasForeignKey(r => r.PaymentType);
+
+            modelBuilder.Entity<ExpenseInformation>()
+              .HasOne(p => p.VenderInformations)
+              .WithMany(q => q.ExpenseInformations)
+              .HasForeignKey(r => r.VenderId);
+
+            modelBuilder.Entity<ExpenseInformation>()
+             .HasOne(p => p.EmployeeInformations)
+             .WithMany(q => q.ExpenseInformation)
+             .HasForeignKey(r => r.EmployeeId);
+
+            modelBuilder.Entity<ExpenseDetailsInformations>()
+             .HasOne(p => p.ExpenseInformation)
+             .WithMany(q => q.ExpenseDetailsInformations)
+             .HasForeignKey(r => r.ExpenseId);
+
+            modelBuilder.Entity<ExpenseDetailsInformations>()
+             .HasOne(p => p.ProductInfo)
+             .WithMany(q => q.ExpenseDetailsInformations)
+             .HasForeignKey(r => r.GeneralExpenseId);
+
+            modelBuilder.Entity<ExpenseDetailsInformations>()
+             .HasOne(p => p.vehicleInformation)
+             .WithMany(q => q.ExpenseDetailsInformations)
+             .HasForeignKey(r => r.VehicleId);
+
+            modelBuilder.Entity<ExpenseDetailsInformations>()
+             .HasOne(p => p.EmployeeInformations)
+             .WithMany(q => q.ExpenseDetailsInformations)
+             .HasForeignKey(r => r.EmployeeId);
+
+            modelBuilder.Entity<ExpenseInformation>()
+                .HasData(new ExpenseInformation
+                {
+                    Id = 1,
+                    EmployeeId = 1,
+                    VenderId = 1,
+                    TotalAmount = 200,
+                    VAT = 10,
+                    GrandTotalAmount = 210,
+                    SpecialNote = "This is note from seed",
+                    ExpenseDate = System.DateTime.Now,
+                    PaymentType = 1,
+                    ExpenseNumber = 100121,
+                    IsApproved = false,
+                    CreatedBy = 1,
+                    CreatedDate = System.DateTime.Now,
+                    IsActive = true,
+                });
+
+            modelBuilder.Entity<ExpenseDetailsInformations>()
+                .HasData(new ExpenseDetailsInformations
+                {
+                    Id = 1,
+                    EmployeeId = 1,
+                    ExpenseId = 1,
+                    OnDate = System.DateTime.Now,
+                    ExpenseRefrenceId = 1,
+                    Description = "this is employee expense",
+                    GeneralExpenseId = 1,
+                    Category = "Employee",
+                    SubTotal = 100,
+                    VAT = 5,
+                    NetTotal = 105,
+                    VehicleId = 1                    
+                });
 
         }
     }

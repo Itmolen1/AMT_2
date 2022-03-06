@@ -52,6 +52,8 @@ namespace WebApplication1.Models
         public BloodGroupInformations BloodGroupInformations { get; set; }
         [ForeignKey("GenderId")]
         public GenderInformations GenderInformations { get; set; }
+        public List<ExpenseInformation> ExpenseInformation { get; set; }
+        public List<ExpenseDetailsInformations> ExpenseDetailsInformations { get; set; }
 
     }
 }

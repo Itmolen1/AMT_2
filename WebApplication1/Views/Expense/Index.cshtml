@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WebApplication1.Models.ExpenseInformation>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text text-info">Exense Informations</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-append">
+                            <a asp-controller="Expense" asp-action="Create" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Add New
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap" id="example1">
+                    <thead>
+                        <tr>
+                            <th>Exp Date</th>
+                            <th>Vender</th>
+                            <th>Expense No</th>
+                            <th>Total Amount</th>
+                            <th>Vat Amount</th>
+                            <th>Grand Total</th>
+                            <th>Oprater</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ExpenseDate.ToString("dd-MMM-yyyy")</td>
+                                <td>@(item.VenderInformations == null ? "unknown" : item.VenderInformations.CompanyName)</td>
+                                <td>@item.ExpenseNumber</td>
+                                <td>@item.TotalAmount</td>
+                                <td>@item.VAT</td>
+                                <td>@item.GrandTotalAmount</td>
+                                <td>@(item.UserInformation == null ? "unknown" : item.UserInformation.FullName)</td>
+
+                                @if (item.IsApproved == false)
+                                {
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { Id = item.Id }) |
+                                        @Html.ActionLink("Print", "PrintQuotation", new { Id = item.Id })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
+                                        @Html.ActionLink("Print", "PrintExpense", new { Id = item.Id })|
+                                        <span class="text text-success" title="This expense is already pproved can't Edit and Delete, You can only view Details and Print">Approved</span>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+<!-- /.row -->
+

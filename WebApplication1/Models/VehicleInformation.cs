@@ -33,6 +33,7 @@ namespace WebApplication1.Models
 
         public UserInformation UserInformation { get; set; }
         public VehicleTypeInformations VehicleTypeInformations { get; set; }
+        public List<ExpenseDetailsInformations> ExpenseDetailsInformations { get; set; }
         
     }
 }

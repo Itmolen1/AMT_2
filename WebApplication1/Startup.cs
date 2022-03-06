@@ -47,6 +47,7 @@ namespace WebApplication1
             services.AddScoped<IAccountRepository, MockAccountRepository>();
             services.AddScoped<ITransictionRepository, MockTransictionInformations>();
             services.AddScoped<IQuotationRepository, MockQuotationRepository>();
+            services.AddScoped<IExpenseRepository, MockExpenseRepository>();
            
             services.Configure<CookiePolicyOptions>(options =>
             {
